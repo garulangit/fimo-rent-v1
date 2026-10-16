@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masuk | Trans Jogja Branding Management</title>
+<link rel="icon" type="image/x-icon" href="icon/favicon.ico">
+<link rel="icon" type="image/png" href="icon/logo-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#0E5A3C; --green-muted:#8DB09A; --yellow:#F2B632; --charcoal:#23272A;
+  --bg:#EDEBE4; --stage:#F5F3EE; --card:#fff; --line:#E3E0D8; --text:#1E2420; --sub:#66706A;
+  --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:24px}
+.shell{width:min(1080px,100%);min-height:600px;display:grid;grid-template-columns:55fr 45fr;background:var(--card);border:1px solid var(--line);border-radius:32px;box-shadow:0 20px 50px rgba(30,36,32,.07);overflow:hidden}
+.stage{background:var(--stage);display:grid;place-items:center;padding:32px}
+.stage svg{display:block;width:100%;max-width:440px;height:auto;overflow:visible}
+
+/* illustration */
+.mascots__shadow{fill:rgba(32,35,33,.07)}
+.mascot__body{stroke:var(--stage);stroke-width:3;stroke-linejoin:round}
+.mascot--tall{--mouth:#DDF4EA}
+.mascot--slate{--mouth:#FDC421}
+.mascot--dome{--mouth:#0E4A31}
+.mascot--capsule{--mouth:var(--charcoal)}
+.mascot--cube{--mouth:#0E4A31}
+.mascot--tall .mascot__body{fill:#0E4A31}
+.mascot--slate .mascot__body{fill:var(--charcoal)}
+.mascot--dome .mascot__body{fill:#25B88A}
+.mascot--capsule .mascot__body{fill:#FDC421}
+.mascot--cube .mascot__body{fill:#DDF4EA;stroke:#0E4A31;stroke-width:2.5}
+.eye{transform-box:fill-box;transform-origin:center;transition:transform 90ms ease-out}
+.eye__sclera{fill:#fff;stroke:rgba(32,35,33,.14);stroke-width:1}
+.eye__pupil-fill{fill:var(--charcoal)}
+.eye__glint{fill:#fff}
+.mascots .eye.is-blinking{transform:scaleY(.1)}
+.mascot__mouth{fill:none;stroke:var(--mouth);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mascot__blush{fill:#F29C8E;opacity:0;transition:opacity 300ms ease}
+.mascots[data-expression="shy"] .mascot__blush{opacity:.8}
+.mascots[data-expression="shy"] .eye:not(.is-blinking){transform:scaleY(.88)}
+.mascots[data-expression="password-typing"] [data-password-close] .eye,
+.mascots[data-expression="password-typing"] [data-password-close] .eye.is-blinking{transform:scaleY(.08)}
+.mascots[data-expression="password-typing"] [data-password-lookaway] .mascot__mouth{fill:var(--mouth);stroke:none}
+.mascot{animation:mascot-rise 560ms cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i)*70ms + 80ms)}
+.mascots.is-startled .mascot__inner{animation:mascot-startle 520ms ease-out both;animation-delay:calc(var(--i)*40ms)}
+@keyframes mascot-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes mascot-startle{0%,100%{transform:translateY(0)}35%{transform:translateY(-5px)}60%{transform:translateY(0)}80%{transform:translateY(-1.5px)}}
+
+/* form */
+.panel{display:flex;flex-direction:column;justify-content:center;padding:44px 52px 28px;min-height:600px}
+.logo{display:flex;align-items:center;margin-bottom:40px}
+.logo img{height:38px;width:auto;max-width:240px;object-fit:contain;display:block}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--green);margin-bottom:10px}
+h1{font-size:28px;line-height:1.2;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.lead{font-size:14.5px;color:var(--sub);line-height:1.55;margin-bottom:28px;max-width:34ch}
+label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field{margin-bottom:18px}
+.field-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.field-heading label{margin-bottom:6px}
+.forgot-link{margin:0 0 6px;padding:0;border:0;background:none;color:var(--green);font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+.forgot-link:hover:not(:disabled){color:#0b4a32;text-decoration:underline}
+.forgot-link:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:3px}
+.forgot-link:disabled{opacity:.55;cursor:wait}
+.control{position:relative}
+input{width:100%;height:46px;padding:0 14px;font:inherit;font-size:15px;color:var(--text);background:#fff;border:1.5px solid var(--line);border-radius:12px;transition:border-color .15s,box-shadow .15s}
+input:hover{border-color:#cfcbc0}
+input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 4px rgba(14,90,60,.14)}
+#password{padding-right:46px}
+.toggle{position:absolute;right:4px;top:4px;width:38px;height:38px;border:0;background:none;border-radius:9px;color:var(--sub);cursor:pointer;display:grid;place-items:center}
+.toggle:hover{color:var(--text);background:#F1EFE9}
+.toggle:focus-visible,.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.toggle:disabled{cursor:not-allowed}
+.toggle svg{width:20px;height:20px}
+.eye-slash{display:none}
+.toggle[aria-pressed="true"] .eye-slash{display:block}
+.toggle[aria-pressed="true"] #eyeDot{opacity:.3}
+.error{display:none;font-size:13px;color:#B3261E;margin:-4px 0 14px;line-height:1.45}
+.error:not(:empty),.error.show,.error.is-error{display:block}
+.error:not(.is-error){color:var(--sub)}
+.error.is-error{color:#B3261E}
+.error.is-success{color:var(--green)}
+.btn{width:100%;height:48px;margin-top:6px;border:0;border-radius:12px;background:var(--green);color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:background .15s,transform .1s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover:not(:disabled){background:#0b4a32}
+.btn.success{background:#166043}
+.btn:active:not(:disabled){transform:scale(.99)}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.btn-spinner{display:none;width:18px;height:18px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:btn-spin .7s linear infinite;flex-shrink:0}
+.btn.loading .btn-spinner{display:block}
+.btn.loading .btn-text{opacity:.8}
+@keyframes btn-spin{to{transform:rotate(360deg)}}
+
+/* Auth pending state */
+.auth-pending{visibility:hidden}
+.login-footer{margin-top:auto;padding-top:28px;color:var(--sub);text-align:center;font-size:11px;line-height:1.65}
+.login-footer p+p{margin-top:2px}
+.footer-meta{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:5px 12px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);font-size:10.5px}
+.environment-indicator{color:var(--sub)}
+.environment-indicator[hidden]{display:none}
+
+@media(max-width:900px){
+  .shell{grid-template-columns:1fr;min-height:0;border-radius:24px}
+  .stage{padding:20px 20px 4px}
+  .stage svg{max-width:260px}
+  .panel{padding:24px 28px 28px;min-height:0}
+  .logo{margin-bottom:24px}
+  .logo img{height:32px}
+  .login-footer{padding-top:24px}
+}
+@media(max-width:480px){
+  body{padding:12px}
+  .panel{padding:24px 20px 28px}
+  h1{font-size:24px}
+  .shell{width:100%;border-radius:20px}
+  .stage{padding:16px 16px 0}
+  .stage svg{max-width:min(260px,80vw)}
+  .footer-meta{gap:4px 10px}
+}
+@media(prefers-reduced-motion:reduce){
+  .mascot,.mascot__inner{animation:none!important}
+  .eye,.mascot__blush{transition:none}
+  .btn-spinner{animation:none}
+}
+</style>
+</head>
+<body class="auth-pending">
+<main class="shell" id="loginShell">
+  <section class="stage" aria-hidden="true">
+    <svg class="mascots" data-mascot-stage data-expression="neutral" viewBox="0 0 440 250" xmlns="http://www.w3.org/2000/svg" focusable="false">
+      <ellipse class="mascots__shadow" cx="220" cy="243" rx="208" ry="4"/>
+      <g class="mascot mascot--tall" data-mascot data-attentive data-password-lookaway style="--i:0"><g class="mascot__inner">
+        <rect class="mascot__body" x="120" y="50" width="100" height="190" rx="14"/><g class="mascot__face">
+          <g transform="translate(152 96)"><g class="eye"><circle class="eye__sclera" r="9"/><g class="eye__pupil"><circle class="eye__pupil-fill" r="4.2"/><circle class="eye__glint" cx="1.4" cy="-1.5" r="1.1"/></g></g></g>
+          <g transform="translate(188 96)"><g class="eye"><circle class="eye__sclera" r="9"/><g class="eye__pupil"><circle class="eye__pupil-fill" r="4.2"/><circle class="eye__glint" cx="1.4" cy="-1.5" r="1.1"/></g></g></g>
+          <ellipse class="mascot__blush" cx="142" cy="111" rx="5" ry="3"/><ellipse class="mascot__blush" cx="198" cy="111" rx="5" ry="3"/><path class="mascot__mouth" d="M164 120 Q170 125 176 120" data-neutral="M164 120 Q170 125 176 120" data-shy="M165 121 Q167.5 118.5 170 121 T175 121" data-whistle="M170 118.5 a2.8 2.8 0 1 0 0.1 0"/>
+        </g></g></g>
+      <g class="mascot mascot--slate" data-mascot data-password-lookaway style="--i:1"><g class="mascot__inner">
+        <rect class="mascot__body" x="205" y="108" width="86" height="132" rx="12"/><g class="mascot__face">
+          <g transform="translate(232 148)"><g class="eye"><circle class="eye__sclera" r="9"/><g class="eye__pupil"><circle class="eye__pupil-fill" r="4.2"/><circle class="eye__glint" cx="1.4" cy="-1.5" r="1.1"/></g></g></g>
+          <g transform="translate(264 148)"><g class="eye"><circle class="eye__sclera" r="9"/><g class="eye__pupil"><circle class="eye__pupil-fill" r="4.2"/><circle class="eye__glint" cx="1.4" cy="-1.5" r="1.1"/></g></g></g>
+          <ellipse class="mascot__blush" cx="222" cy="163" rx="5" ry="3"/><ellipse class="mascot__blush" cx="274" cy="163" rx="5" ry="3"/><path class="mascot__mouth" d="M242 172 Q248 177 254 172" data-neutral="M242 172 Q248 177 254 172" data-shy="M243 173 Q245.5 170.5 248 173 T253 173" data-whistle="M248 170.5 a2.8 2.8 0 1 0 0.1 0"/>
+        </g></g></g>
+      <g class="mascot mascot--dome" data-mascot data-password-close style="--i:2"><g class="mascot__inner">
+        <path class="mascot__body" d="M8 240 A82 82 0 0 1 172 240 Z"/><g class="mascot__face">
+          <g transform="translate(72 198)"><g class="eye"><circle class="eye__sclera" r="9"/><g class="eye__pupil"><circle class="eye__pupil-fill" r="4.2"/><circle class="eye__glint" cx="1.4" cy="-1.5" r="1.1"/></g></g></g>
+          <g transform="translate(108 198)"><g class="eye"><circle class="eye__sclera" r="9"/><g class="eye__pupil"><circle class="eye__pupil-fill" r="4.2"/><circle class="eye__glint" cx="1.4" cy="-1.5" r="1.1"/></g></g></g>
+          <ellipse class="mascot__blush" cx="61" cy="212" rx="5" ry="3"/><ellipse class="mascot__blush" cx="119" cy="212" rx="5" ry="3"/><path class="mascot__mouth" d="M84 219 Q90 224 96 219" data-neutral="M84 219 Q90 224 96 219" data-shy="M85 220 Q87.5 217.5 90 220 T95 220" data-whistle="M90 217.5 a2.8 2.8 0 1 0 0.1 0"/>
+        </g></g></g>
+      <g class="mascot mascot--capsule" data-mascot data-password-close style="--i:3"><g class="mascot__inner">
+        <rect class="mascot__body" x="282" y="118" width="84" height="122" rx="42"/><g class="mascot__face">
+          <g transform="translate(306 164)"><g class="eye"><circle class="eye__sclera" r="9"/><g class="eye__pupil"><circle class="eye__pupil-fill" r="4.2"/><circle class="eye__glint" cx="1.4" cy="-1.5" r="1.1"/></g></g></g>
+          <g transform="translate(342 164)"><g class="eye"><circle class="eye__sclera" r="9"/><g class="eye__pupil"><circle class="eye__pupil-fill" r="4.2"/><circle class="eye__glint" cx="1.4" cy="-1.5" r="1.1"/></g></g></g>
+          <ellipse class="mascot__blush" cx="298" cy="179" rx="5" ry="3"/><ellipse class="mascot__blush" cx="350" cy="179" rx="5" ry="3"/><path class="mascot__mouth" d="M318 187 Q324 192 330 187" data-neutral="M318 187 Q324 192 330 187" data-shy="M319 188 Q321.5 185.5 324 188 T329 188" data-whistle="M324 185.5 a2.8 2.8 0 1 0 0.1 0"/>
+        </g></g></g>
+      <g class="mascot mascot--cube" data-mascot style="--i:4"><g class="mascot__inner">
+        <rect class="mascot__body" x="352" y="172" width="78" height="68" rx="20"/><g class="mascot__face">
+          <g transform="translate(377 198)"><g class="eye"><circle class="eye__sclera" r="9"/><g class="eye__pupil"><circle class="eye__pupil-fill" r="4.2"/><circle class="eye__glint" cx="1.4" cy="-1.5" r="1.1"/></g></g></g>
+          <g transform="translate(405 198)"><g class="eye"><circle class="eye__sclera" r="9"/><g class="eye__pupil"><circle class="eye__pupil-fill" r="4.2"/><circle class="eye__glint" cx="1.4" cy="-1.5" r="1.1"/></g></g></g>
+          <ellipse class="mascot__blush" cx="367" cy="212" rx="5" ry="3"/><ellipse class="mascot__blush" cx="415" cy="212" rx="5" ry="3"/><path class="mascot__mouth" d="M386 217 Q391 221 396 217" data-neutral="M386 217 Q391 221 396 217" data-shy="M387 218 Q389 216 391 218 T395 218" data-whistle="M391 215 a2.8 2.8 0 1 0 0.1 0"/>
+        </g></g></g>
+    </svg>
+  </section>
+
+  <section class="panel">
+    <div class="logo">
+      <img src="icon/logo-full.png" alt="Trans Jogja" onerror="this.src='icon/logo-icon.png'">
+    </div>
+    <p class="eyebrow">MANAJEMEN BRANDING BUS TRANSJOGJA</p>
+    <h1>Masuk ke aplikasi</h1>
+    <p class="lead">Gunakan akun yang telah dibuat oleh admin.</p>
+
+    <form id="login-form" novalidate>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="username" placeholder="nama@email.com" aria-describedby="login-message" required>
+      </div>
+      <div class="field">
+        <div class="field-heading">
+          <label for="password">Kata sandi</label>
+          <button type="button" class="forgot-link" id="forgot-password">Lupa kata sandi?</button>
+        </div>
+        <div class="control">
+          <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Masukkan kata sandi" aria-describedby="login-message" required>
+          <button type="button" class="toggle" id="togglePassword" aria-label="Tampilkan kata sandi" aria-pressed="false" aria-controls="password">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/>
+              <circle cx="12" cy="12" r="3" id="eyeDot"/>
+              <line class="eye-slash" x1="2" y1="2" x2="22" y2="22"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <p class="error" id="login-message" role="alert"></p>
+      <button class="btn" type="submit" id="login-button">
+        <span class="btn-spinner" aria-hidden="true"></span>
+        <span class="btn-text">Masuk</span>
+      </button>
+    </form>
+    <footer class="login-footer">
+      <p>© 2026 All rights reserved.</p>
+      <p>Developed with 💘 by Andhika Febri</p>
+      <div class="footer-meta">
+        <span>Branding Trans Jogja v2.0.0</span>
+
+      </div>
+    </footer>
+  </section>
+</main>
+
+<!-- Firebase Authentication module -->
+<script type="module" src="login.js"></script>
+</body>
+</html>

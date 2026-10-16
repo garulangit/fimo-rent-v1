@@ -1,0 +1,1895 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Dashboard operasional branding armada Trans Jogja — pantau okupansi, status, dan jadwal branding bus." />
+    <title>Dashboard Branding Trans Jogja</title>
+    <link rel="icon" type="image/x-icon" href="icon/favicon.ico" />
+    <link rel="icon" type="image/png" href="icon/logo-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="nota-dinas.css" />
+    <script>
+      (function() {
+        var key = 'branding-dashboard-theme-v1';
+        var theme = 'light';
+        try {
+          var storedTheme = localStorage.getItem(key);
+          theme = storedTheme === 'dark' || storedTheme === 'light' ? storedTheme : 'light';
+          if (storedTheme !== theme) localStorage.setItem(key, theme);
+        } catch (_) {}
+        document.documentElement.dataset.dashboardTheme = theme;
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body class="auth-pending">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-mark">
+          <img src="icon/logo-full.png" alt="Trans Jogja" class="sidebar-logo" />
+        </div>
+        <div class="brand-name">Branding<br /><strong>Trans Jogja</strong></div>
+        <button id="mobile-nav-toggle" class="mobile-nav-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false">
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+        <nav id="primary-navigation" aria-label="Navigasi utama">
+          <div class="nav-section">
+            <div class="nav-section-label">Overview</div>
+            <a class="active" href="index.html#dashboard">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M3 11.5A1.5 1.5 0 014.5 10h11A1.5 1.5 0 0117 11.5v4A1.5 1.5 0 0115.5 17h-11A1.5 1.5 0 013 15.5v-4zm2.5-7A1.5 1.5 0 017 3h6a1.5 1.5 0 011.5 1.5V8h-9V4.5zM5 13h10v2H5v-2z"/></svg>
+              </span>
+              <span>Dashboard</span>
+            </a>
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-section-label">Operations</div>
+            <a href="index.html#master-bus">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M5 5.5A1.5 1.5 0 016.5 4h7A1.5 1.5 0 0115 5.5V8l1.5 1.5V11a1 1 0 01-1 1h-.5l-.75 2.5H15a1 1 0 011-1h1.5a1 1 0 110 2H3.5a1 1 0 110-2H5a1 1 0 011 1h.75L5.5 12H5a1 1 0 01-1-1v-1.5L5 8V5.5zm1.5 0v2.5h7V5.5h-7zm1.5 7.5h4l.5-1.5h-5l.5 1.5z"/></svg>
+              </span>
+              <span>Master Bus</span>
+            </a>
+            <a href="index.html#branding">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M4 3.5A1.5 1.5 0 015.5 2h9A1.5 1.5 0 0116 3.5v13A1.5 1.5 0 0114.5 18h-9A1.5 1.5 0 014 16.5v-13zm2 1.5h8v2H6V5zm0 4h8v2H6V9zm0 4h5v2H6v-2z"/></svg>
+              </span>
+              <span>Data Branding</span>
+            </a>
+            <a href="index.html#booking">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 3a1 1 0 112 0v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V3z"/></svg>
+              </span>
+              <span>Booking Branding</span>
+            </a>
+            <a href="index.html#setting-harga-branding">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 3h8a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2zm1 3h6v2H7V6zm0 4h6v2H7v-2zm0 4h4v2H7v-2z"/></svg>
+              </span>
+              <span>Setting Harga Branding</span>
+            </a>
+            <a href="index.html#rekap-branding">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M3 15.5A1.5 1.5 0 014.5 14H6v-3h2v3h2V7h2v7h2V4.5A1.5 1.5 0 0116 3h.5v12A1.5 1.5 0 0115 16.5H4.5A1.5 1.5 0 013 15.5z"/></svg>
+              </span>
+              <span>Rekap Branding</span>
+            </a>
+
+          <div class="nav-section">
+            <div class="nav-section-label">Monitoring</div>
+            <a href="index.html#administrasi-branding">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 2.5A1.5 1.5 0 007.5 1h5A1.5 1.5 0 0114 2.5V3h1.5A1.5 1.5 0 0117 4.5v11A1.5 1.5 0 0115.5 17h-11A1.5 1.5 0 013 15.5v-11A1.5 1.5 0 014.5 3H6v-.5zm1 2.5h6V4H7v1zm2 4.5a1 1 0 100 2h2a1 1 0 100-2h-2zm-3 4a1 1 0 100 2h5a1 1 0 100-2H6z"/></svg>
+              </span>
+              <span>Kelengkapan Administrasi</span>
+            </a>
+            <a href="index.html#history">
+              <span class="nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a8 8 0 105.336 13.666l.98.98a1 1 0 101.414-1.414l-.98-.98A8 8 0 0010 2zm1 4a1 1 0 10-2 0v4a1 1 0 00.293.707l2 2a1 1 0 001.414-1.414L11 10.586V6z"/></svg>
+              </span>
+              <span>History</span>
+            </a>
+          </div>
+        </nav>
+        <div class="user-session">
+          <span id="signed-in-user">Memuat pengguna…</span>
+          <button id="logout-button" type="button" class="logout-button">Keluar</button>
+        </div>
+        <p id="firebase-status" class="firebase-status">Memeriksa konfigurasi Firebase…</p>
+      </aside>
+
+      <main>
+
+        <!-- ==============================
+             DASHBOARD
+        ============================== -->
+        <section id="dashboard" class="app-view">
+          <header class="page-header">
+            <div>
+              <p class="eyebrow">DASHBOARD</p>
+              <h1>Okupansi Branding</h1>
+              <p class="subtitle">Ringkasan kondisi branding armada Trans Jogja secara real-time.</p>
+            </div>
+            <div class="button-group">
+              <div class="theme-control-container">
+                <button type="button" id="theme-toggle" class="theme-slider-toggle" role="switch" aria-checked="false" aria-label="Beralih ke mode gelap" title="Beralih ke mode gelap">
+                  <span class="theme-toggle-track">
+                    <span class="theme-icon theme-icon-sun" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    </span>
+                    <span class="theme-slider-thumb"></span>
+                    <span class="theme-icon theme-icon-moon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    </span>
+                  </span>
+                </button>
+              </div>
+              <a class="button-link secondary" href="index.html#master-bus">Master Bus</a>
+              <a class="button-link secondary" href="index.html#branding">Data Branding</a>
+              <a class="button-link" href="index.html#booking">+ Booking</a>
+            </div>
+          </header>
+
+          <div id="dashboard-overview-panel">
+            <section class="filters" aria-label="Filter dashboard">
+            <label>Jalur<select id="dashboard-route"><option value="">Semua Jalur</option></select></label>
+            <label>Status<select id="dashboard-status"><option value="">Semua Status</option></select></label>
+            <label>Jenis Branding<select id="dashboard-type"><option value="">Semua Jenis</option></select></label>
+            <label>Brand<select id="dashboard-brand"><option value="">Semua Brand</option></select></label>
+          </section>
+
+          <!-- KPI Cards -->
+          <section class="kpi-grid" aria-label="Ringkasan KPI">
+            <article>
+              <div class="kpi-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M3 5a2 2 0 012-2h10a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 2h14v3H3V7zM6 15a1 1 0 100 2 1 1 0 000-2zm8 0a1 1 0 100 2 1 1 0 000-2z"/></svg>
+              </div>
+              <div class="kpi-content">
+                <span>Total Bus</span>
+                <strong id="kpi-total-bus">—</strong>
+              </div>
+            </article>
+            <article>
+              <div class="kpi-icon accent">
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z"/></svg>
+              </div>
+              <div class="kpi-content">
+                <span>Total Branding</span>
+                <strong id="kpi-active-branding">—</strong>
+              </div>
+            </article>
+            <article>
+              <div class="kpi-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
+              </div>
+              <div class="kpi-content">
+                <span>Bus Tersedia</span>
+                <strong id="kpi-available">—</strong>
+              </div>
+            </article>
+            <article>
+              <div class="kpi-icon">
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zM3.586 7.5A6.5 6.5 0 0110 3.5v4.25L6.103 9.896A6.49 6.49 0 013.586 7.5z"/></svg>
+              </div>
+              <div class="kpi-content">
+                <span>Occupancy</span>
+                <strong id="kpi-occupancy">—</strong>
+              </div>
+            </article>
+            <article>
+              <div class="kpi-icon muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M21 14v6h-6"/><path d="M14 21 3 10"/><path d="M3 9V3h6"/><path d="M8 8 3 13"/></svg>
+              </div>
+              <div class="kpi-content">
+                <span>Full Body</span>
+                <strong id="kpi-full">—</strong>
+              </div>
+            </article>
+            <article>
+              <div class="kpi-icon muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M8 21H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M14 8h4"/><path d="M14 12h4"/><path d="M14 16h4"/></svg>
+              </div>
+              <div class="kpi-content">
+                <span>Back Body</span>
+                <strong id="kpi-back">—</strong>
+              </div>
+            </article>
+            <article>
+              <div class="kpi-icon muted">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10"/><path d="M8 14v6"/><path d="M16 14v6"/><path d="M4 18h16"/><path d="M10 18h4"/></svg>
+              </div>
+              <div class="kpi-content">
+                <span>Side Body</span>
+                <strong id="kpi-side">—</strong>
+              </div>
+            </article>
+            <article class="kpi-revenue" title="Estimasi pendapatan berdasarkan data dashboard yang sedang ditampilkan.">
+              <div class="kpi-icon accent">
+                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.75a8.25 8.25 0 100 16.5 8.25 8.25 0 000-16.5zm.75 12.1v1.4h-1.5v-1.4a4.4 4.4 0 01-2.8-1.25l1.06-1.06c.6.6 1.31.9 2.13.9.85 0 1.36-.36 1.36-.92 0-.49-.35-.76-1.58-1.08-1.72-.44-2.58-1.14-2.58-2.4 0-1.15.92-2.02 2.41-2.24v-1.4h1.5v1.4c.91.13 1.66.52 2.24 1.12l-1.04 1.06c-.46-.45-1.05-.68-1.77-.68-.75 0-1.19.31-1.19.78 0 .48.38.73 1.58 1.05 1.79.47 2.6 1.13 2.6 2.44 0 1.23-.92 2.12-2.42 2.28z"/></svg>
+              </div>
+              <div class="kpi-content">
+                <span>Estimasi Pendapatan</span>
+                <strong id="kpi-estimated-revenue" aria-describedby="kpi-estimated-revenue-detail">—</strong>
+                <small id="kpi-estimated-revenue-detail">Estimasi berdasarkan data saat ini</small>
+              </div>
+            </article>
+          </section>
+
+          <!-- Dashboard Charts -->
+          <div class="dashboard-charts dashboard-charts-overview">
+            <div class="chart-card chart-card-pt">
+              <div class="chart-card-header">
+                <div>
+                  <h3>Distribusi Branding Berdasarkan Company</h3>
+                  <span class="chart-subtitle">Proporsi perusahaan pengiklan pada armada terbranding</span>
+                </div>
+                <div class="chart-header-badge" id="chart-pt-badge">
+                  <span id="chart-pt-total">0</span> bus terbranding
+                </div>
+              </div>
+              <div class="chart-body">
+                <div class="chart-donut-wrap chart-pt-wrap">
+                  <div class="chart-donut-canvas chart-pt-canvas-box">
+                    <canvas id="chart-pt" width="190" height="190"></canvas>
+                    <div class="chart-center-label">
+                      <span class="chart-center-value" id="chart-pt-center">—</span>
+                      <span class="chart-center-sub">Total Bus</span>
+                    </div>
+                  </div>
+                  <div class="chart-legend chart-pt-legend" id="chart-pt-legend" aria-label="Legenda Company"></div>
+                </div>
+              </div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3>Branding per Jalur</h3>
+                <span class="chart-subtitle">Distribusi bus berdasarkan koridor</span>
+              </div>
+              <div class="chart-body chart-body-bar">
+                <div style="position:relative; width:100%; height:220px;">
+                  <canvas id="chart-jalur"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <section class="data-panel dashboard-calendar-panel" aria-labelledby="dashboard-calendar-title">
+            <div class="panel-heading dashboard-calendar-heading">
+              <div>
+                <p class="eyebrow">JADWAL ARMADA</p>
+                <h2 id="dashboard-calendar-title">Kalender Branding</h2>
+                <p>Periode branding yang mencakup bulan terpilih.</p>
+              </div>
+              <div class="dashboard-calendar-navigation" aria-label="Navigasi bulan kalender">
+                <button id="dashboard-calendar-previous" type="button" class="secondary" aria-label="Bulan sebelumnya">‹</button>
+                <strong id="dashboard-calendar-month-label" aria-live="polite"></strong>
+                <button id="dashboard-calendar-next" type="button" class="secondary" aria-label="Bulan berikutnya">›</button>
+              </div>
+            </div>
+            <div class="filters compact-filters dashboard-calendar-filters" aria-label="Filter kalender branding">
+              <div class="dashboard-company-filter">
+                <span class="dashboard-company-filter-label">Company</span>
+                <details class="dashboard-company-select">
+                  <summary id="dashboard-calendar-company-summary">Semua Company</summary>
+                  <div id="dashboard-calendar-company-options" class="dashboard-company-options" role="group" aria-label="Pilih company kalender"></div>
+                </details>
+              </div>
+              <label>Type Branding<select id="dashboard-calendar-type"><option value="">Semua Type</option></select></label>
+              <label>Bus / No Polisi<select id="dashboard-calendar-bus"><option value="">Semua Bus</option></select></label>
+            </div>
+            <div id="dashboard-calendar-content" class="dashboard-calendar-content"></div>
+          </section>
+
+          <section class="data-panel dashboard-expiration-panel" aria-labelledby="dashboard-expiration-title">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">MONITORING KONTRAK</p>
+                <h2 id="dashboard-expiration-title">Jatuh Tempo Branding</h2>
+                <p>Branding yang belum ditandai selesai dan berakhir dalam 30 hari atau telah melewati tanggal akhir.</p>
+              </div>
+              <a class="button-link secondary" href="index.html#branding">Lihat Semua</a>
+            </div>
+            <div class="dashboard-expiration-summary" aria-label="Ringkasan jatuh tempo">
+              <article><span>≤ 7 Hari</span><strong id="dashboard-expiration-seven">0</strong><small>branding</small></article>
+              <article><span>≤ 30 Hari</span><strong id="dashboard-expiration-thirty">0</strong><small>lebih dari 7 hingga 30 hari</small></article>
+              <article class="is-expired"><span>Expired</span><strong id="dashboard-expiration-expired">0</strong><small>branding</small></article>
+            </div>
+            <div class="table-wrap dashboard-expiration-table-wrap">
+              <table class="dashboard-expiration-table">
+                <thead><tr><th>Company / Brand</th><th>No Polisi</th><th>No Lambung</th><th>Type</th><th>Akhir Penayangan</th><th>Sisa Hari</th><th>Status</th></tr></thead>
+                <tbody id="dashboard-expiration-body"><tr><td colspan="7" class="empty-state">Memuat data jatuh tempo…</td></tr></tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Dashboard Revenue -->
+          <section class="dashboard-revenue-card" aria-label="Estimasi pendapatan branding">
+            <div class="dashboard-revenue-header">
+              <div>
+                <p class="eyebrow">REVENUE</p>
+                <h2>Estimasi Pendapatan Branding</h2>
+                <p>Estimasi pendapatan tahun berjalan berdasarkan filter dashboard.</p>
+              </div>
+              <div class="dashboard-revenue-total">
+                <span>Total Estimasi Pendapatan</span>
+                <strong id="dashboard-revenue-total">Rp0</strong>
+              </div>
+            </div>
+            <div class="dashboard-revenue-chart-wrap">
+              <canvas id="dashboard-revenue-chart" height="150"></canvas>
+            </div>
+          </section>
+
+          <!-- Active Branding Table -->
+          <section class="data-panel dashboard-active-branding">
+              <div class="panel-heading">
+                <div><p class="eyebrow">OPERASIONAL</p><h2>Data Branding Aktif</h2><p>Hanya branding dengan status Berjalan sesuai filter dashboard.</p></div>
+                <a class="button-link secondary" href="index.html#branding">Lihat Semua</a>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>No</th><th>Jalur</th><th>No Lamb</th><th>Status</th><th>No Polisi</th><th>Type</th><th>Nama Brand</th><th>Akhir Penayangan</th><th>Jenis Branding</th><th>Keterangan</th></tr></thead>
+                  <tbody id="dashboard-branding-body"><tr><td colspan="10" class="empty-state">Memuat data branding…</td></tr></tbody>
+                </table>
+              </div>
+          </section>
+        </section>
+
+        <!-- ==============================
+             REKAP BRANDING
+        ============================== -->
+        <section id="rekap-branding" class="app-view data-panel" hidden>
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">MONITORING ARMADA</p>
+              <h2>Rekap Branding</h2>
+              <p>Rekap seluruh armada bus beserta status dan informasi branding aktif.</p>
+            </div>
+            <div class="button-group">
+              <button id="export-rekap-pdf" type="button" class="secondary">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15" aria-hidden="true"><path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 2l4 4h-4V4zM7 11a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm0 3a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
+                Export PDF
+              </button>
+              <button id="export-rekap-csv" type="button" class="secondary">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15" aria-hidden="true"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                Export CSV
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Summary -->
+          <section class="rekap-summary-grid" aria-label="Ringkasan Rekap Branding">
+            <div class="rekap-summary-card">
+              <span>Total Bus</span>
+              <strong id="rekap-stat-total">0</strong>
+            </div>
+            <div class="rekap-summary-card status-berjalan-card">
+              <span>Berjalan</span>
+              <strong id="rekap-stat-berjalan">0</strong>
+            </div>
+            <div class="rekap-summary-card status-proses-card">
+              <span>Proses</span>
+              <strong id="rekap-stat-proses">0</strong>
+            </div>
+            <div class="rekap-summary-card status-booking-card">
+              <span>Booking</span>
+              <strong id="rekap-stat-booking">0</strong>
+            </div>
+            <div class="rekap-summary-card status-none-card">
+              <span>Belum Branding</span>
+              <strong id="rekap-stat-none">0</strong>
+            </div>
+          </section>
+
+          <!-- Search & Filters -->
+          <div class="filters compact-filters rekap-filters" aria-label="Filter Rekap Branding">
+            <label>Cari No Polisi
+              <input id="rekap-search-polisi" type="search" placeholder="Contoh: AB 7843 AK" />
+            </label>
+            <label>Cari No. Lamb
+              <input id="rekap-search-lamb" type="search" placeholder="Contoh: 42" />
+            </label>
+            <label>Cari Nama Brand
+              <input id="rekap-search-brand" type="search" placeholder="Contoh: Brand A" />
+            </label>
+            <label>Jalur Bus
+              <select id="rekap-filter-jalur">
+                <option value="">Semua Jalur</option>
+              </select>
+            </label>
+            <label>Status Branding
+              <select id="rekap-filter-status">
+                <option value="">Semua Status</option>
+                <option value="BERJALAN">Berjalan</option>
+                <option value="PROSES">Proses</option>
+                <option value="BOOKING">Booking</option>
+                <option value="NONE">Belum Ada Branding</option>
+              </select>
+            </label>
+            <label>Type Branding
+              <select id="rekap-filter-type">
+                <option value="">Semua Type</option>
+                <option value="Full Body">Full Body</option>
+                <option value="Back Body">Back Body</option>
+                <option value="Side Body">Side Body</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="table-wrap">
+            <table id="rekap-branding-table">
+              <thead>
+                <tr>
+                  <th data-sort-key="no" class="sortable" style="width:50px">NO</th>
+                  <th data-sort-key="jalur" class="sortable">JALUR</th>
+                  <th data-sort-key="noLamb" class="sortable">No. Lamb</th>
+                  <th data-sort-key="status" class="sortable">Status</th>
+                  <th data-sort-key="noPolisi" class="sortable">No Polisi</th>
+                  <th data-sort-key="type" class="sortable">Type</th>
+                  <th data-sort-key="namaBrand" class="sortable">Nama Brand</th>
+                  <th data-sort-key="tanggalMulai" class="sortable">Awal Penayangan</th>
+                  <th data-sort-key="tanggalSelesai" class="sortable">Akhir Penayangan</th>
+                  <th data-sort-key="durasiKontrak" class="sortable">Durasi Kontrak</th>
+                  <th data-sort-key="referensi" class="sortable">Referensi</th>
+                  <th>Diedit Oleh</th>
+                  <th>Terakhir Diubah</th>
+                </tr>
+              </thead>
+              <tbody id="rekap-branding-body">
+                <tr><td colspan="13" class="empty-state">Memuat rekap data bus...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ==============================
+             KELENGKAPAN ADMINISTRASI BRANDING
+        ============================== -->
+        <section id="pendapatan-branding" class="app-view data-panel" hidden>
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">REVENUE</p>
+              <h2>Pendapatan Branding</h2>
+              <p>Estimasi pendapatan branding berdasarkan booking aktif dan durasi penayangan.</p>
+            </div>
+          </div>
+
+          <div class="revenue-filters filters compact-filters" aria-label="Filter pendapatan branding">
+            <label>Periode
+              <select id="revenue-period"><option value="">Semua Periode</option></select>
+            </label>
+            <label>Media Bus
+              <select id="revenue-media-bus"><option value="">Semua Media</option></select>
+            </label>
+            <label>Space Iklan
+              <select id="revenue-space"><option value="">Semua Space</option></select>
+            </label>
+            <label>Durasi
+              <select id="revenue-duration"><option value="">Semua Durasi</option></select>
+            </label>
+            <label>Status Booking
+              <select id="revenue-status"><option value="">Semua Status</option></select>
+            </label>
+          </div>
+
+          <div class="revenue-summary-grid" aria-label="Ringkasan pendapatan branding">
+            <div class="revenue-summary-card">
+              <span>Estimated Revenue</span>
+              <strong id="revenue-estimated">Rp0</strong>
+            </div>
+            <div class="revenue-summary-card">
+              <span>Base Revenue</span>
+              <strong id="revenue-base">Rp0</strong>
+            </div>
+            <div class="revenue-summary-card">
+              <span>PPN</span>
+              <strong id="revenue-ppn">Rp0</strong>
+            </div>
+            <div class="revenue-summary-card accent-card">
+              <span>Total + PPN</span>
+              <strong id="revenue-total">Rp0</strong>
+            </div>
+          </div>
+
+          <div class="revenue-chart-card">
+            <div class="chart-card-header">
+              <h3>Monthly Revenue Breakdown</h3>
+            </div>
+            <div class="chart-body chart-body-bar">
+              <canvas id="revenue-month-chart" height="180"></canvas>
+            </div>
+          </div>
+
+          <div class="table-wrap revenue-table-wrap">
+            <table id="revenue-table">
+              <thead>
+                <tr>
+                  <th>Booking ID</th>
+                  <th>Media Bus</th>
+                  <th>Space Iklan</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Duration</th>
+                  <th>Base Price</th>
+                  <th>PPN</th>
+                  <th>Total</th>
+                  <th>Monthly Allocated Revenue</th>
+                  <th>Status Harga</th>
+                </tr>
+              </thead>
+              <tbody id="revenue-table-body">
+                <tr><td colspan="11" class="empty-state">Memuat data pendapatan…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="administrasi-branding" class="app-view data-panel" hidden>
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">ADMINISTRASI</p>
+              <h2>Kelengkapan Administrasi Branding</h2>
+              <p>Data dokumen dikelompokkan berdasarkan tahun dan bulan awal penayangan.</p>
+            </div>
+            <button id="refresh-admin" type="button" class="secondary">Refresh Data</button>
+          </div>
+          <div class="filters compact-filters admin-period-filters">
+            <label for="admin-search">Cari Brand / Company / Bus
+              <input id="admin-search" type="search" placeholder="Contoh: BFI" autocomplete="off" />
+            </label>
+          </div>
+          <div id="admin-period-groups" class="admin-period-groups" aria-live="polite">
+            <p class="empty-state admin-period-empty">Memuat data administrasi…</p>
+          </div>
+        </section>
+
+        <!-- ==============================
+             MASTER BUS
+        ============================== -->
+        <section id="master-bus" class="app-view data-panel" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">MASTER DATA</p><h2>Master Bus</h2><p>Kelola data armada.</p></div><div class="button-group"><button id="add-master-bus" type="button">Tambah Bus</button><button id="refresh-buses" type="button" class="secondary">Refresh Data</button><button id="download-master-bus-template" type="button" class="secondary">Template CSV</button><button id="export-master-buses" type="button" class="secondary">Export CSV</button><label class="button-link secondary" for="bus-csv-file">Import CSV</label><input id="bus-csv-file" type="file" accept=".csv,text/csv" hidden /></div></div>
+          <div class="filters compact-filters"><label>Cari Bus<input id="master-search" type="search" placeholder="No Polisi, No Lamb, tipe, atau trayek" /></label><label>Jalur Bus<select id="master-route"><option value="">Semua Jalur</option></select></label><label>Trayek<select id="master-trayek"><option value="">Semua Trayek</option></select></label><div class="stat-inline"><span>Total Bus</span><strong id="master-count">—</strong></div><div class="stat-inline"><span>Kode Trayek Belum Tersedia</span><strong id="master-missing-trayek-count">—</strong></div></div>
+          <div class="table-wrap"><table id="master-bus-table" class="master-table"><colgroup><col class="col-no" /><col class="col-polisi" /><col class="col-jalur" /><col class="col-lamb" /><col class="col-trayek" /><col class="col-tipe" /><col class="col-warna" /><col class="col-karoseri" /><col class="col-aksi" /></colgroup><thead><tr><th data-sort-key="no" class="sortable">No</th><th data-sort-key="noPolisi" class="sortable">No Polisi</th><th data-sort-key="jalurBus" class="sortable">Jalur</th><th data-sort-key="noLamb" class="sortable">No Lambung</th><th data-sort-key="trayek" class="sortable">Trayek</th><th data-sort-key="tipeBus" class="sortable">Tipe Bus</th><th data-sort-key="warnaBus" class="sortable">Warna Bus</th><th data-sort-key="karoseri" class="sortable">Karoseri</th><th>Aksi</th></tr></thead><tbody id="master-bus-body"></tbody></table></div>
+        </section>
+
+        <!-- ==============================
+             DATA BRANDING
+        ============================== -->
+        <section id="branding" class="app-view data-panel" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">INVENTORY</p><h2>Data Branding</h2><p>Data bus yang terpasang branding.</p></div><div class="button-group"><button id="refresh-brandings" type="button" class="secondary">Refresh Data</button><button id="download-branding-template" type="button" class="secondary" title="Download template, isi data sesuai kolom yang tersedia, lalu simpan sebagai CSV UTF-8 untuk diimport.">Download Template CSV</button><label class="button-link secondary" for="branding-csv-file" title="Import data CSV sesuai format template">Import CSV</label><input id="branding-csv-file" type="file" accept=".csv,text/csv" hidden /><button id="export-brandings" type="button" class="secondary">Export CSV</button><a class="button-link" href="index.html#booking">+ Tambah Branding</a></div></div>
+          <div class="filters compact-filters"><label>Jalur<select id="branding-route"><option value="">Semua Jalur</option></select></label><label>Status<select id="branding-status"><option value="">Semua Status</option></select></label><label>Jenis Branding<select id="branding-type"><option value="">Semua Jenis</option></select></label><label>Brand<select id="branding-brand"><option value="">Semua Brand</option></select></label><label>Cari<input id="branding-search" type="search" placeholder="Brand atau No Polisi" /></label></div>
+          <div class="table-wrap"><table id="branding-table"><thead><tr><th data-sort-key="no" class="sortable">No</th><th data-sort-key="jalur" class="sortable">Jalur</th><th data-sort-key="noLamb" class="sortable">No Lamb</th><th data-sort-key="status" class="sortable">Status</th><th data-sort-key="noPolisi" class="sortable">No Polisi</th><th data-sort-key="tipeBus" class="sortable">Type</th><th data-sort-key="namaBrand" class="sortable">Nama Brand</th><th data-sort-key="namaPT" class="sortable">Nama PT</th><th data-sort-key="tanggalMulai" class="sortable">Awal Penayangan</th><th data-sort-key="tanggalSelesai" class="sortable">Akhir Penayangan</th><th data-sort-key="durasiKontrak" class="sortable">Durasi Kontrak (Bulan)</th><th data-sort-key="jenisBranding" class="sortable">Jenis Branding</th><th data-sort-key="keterangan" class="sortable">Keterangan</th><th>Aksi</th></tr></thead><tbody id="branding-body"></tbody></table></div>
+        </section>
+
+        <!-- ==============================
+             BOOKING BRANDING
+        ============================== -->
+        <section id="booking" class="app-view data-panel" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">INPUT DATA</p><h2>Booking Branding</h2><p>Satu bus menghasilkan satu record branding.</p></div></div>
+          <form id="booking-form" class="booking-form">
+            <label>Nama Brand<input name="namaBrand" required /></label><label>Nama PT<input name="namaPT" required /></label>
+            <label>Jenis Branding<select id="booking-type" name="jenisBranding" required><option value="">Pilih jenis</option><option>Full Body</option><option>Back Body</option><option>Side Body</option></select></label>
+            <label>Tanggal Booking<input id="booking-date" name="tanggalBooking" type="date" required /></label><label>Tanggal Mulai Penayangan<input id="start-date" name="tanggalMulai" type="date" required /></label><label>Tanggal Akhir Penayangan<input id="end-date" name="tanggalSelesai" type="date" required /></label>
+            <label>Status Branding<select name="status" required><option>BOOKING</option><option>PROSES</option><option>BERJALAN</option><option>SELESAI</option></select></label><label class="wide-field">Keterangan<textarea name="keterangan" rows="3"></textarea></label>
+            <section class="wide-field bus-picker" aria-labelledby="bus-picker-title"><div class="bus-picker-heading"><div><label id="bus-picker-title" for="booking-bus-search">Bus tersedia</label><small>Cari dan pilih satu atau beberapa bus. Bus bentrok tidak dapat dipilih.</small></div><strong id="booking-selection-count">0 bus dipilih</strong></div><input id="booking-bus-search" type="search" placeholder="Cari No Lamb atau No Polisi" autocomplete="off" /><div class="bus-picker-actions"><button id="select-visible-buses" type="button" class="secondary">Pilih semua hasil</button><button id="clear-visible-buses" type="button" class="secondary">Batalkan hasil</button><button id="clear-all-buses" type="button" class="text-button">Batalkan semua</button></div><div id="booking-bus-list" class="bus-list" aria-live="polite"></div></section>
+            <div class="wide-field form-action"><button id="save-booking" type="submit">Simpan Booking</button></div>
+          </form>
+        </section>
+
+        <!-- ==============================
+             SETTING HARGA BRANDING
+        ============================== -->
+        <section id="setting-harga-branding" class="app-view data-panel" hidden>
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">ADMIN · PRICING</p>
+              <h2>Pricelist Branding</h2>
+              <p>Harga dasar bulanan sebelum PPN; perubahan berlaku untuk Booking baru dan perhitungan yang belum memiliki snapshot.</p>
+            </div>
+            <button id="save-brand-pricing" type="button" class="secondary">Simpan Harga</button>
+          </div>
+          <p id="admin-pricing-status" class="admin-config-note">Harga tersimpan di konfigurasi bersama.</p>
+
+          <div class="pricing-layout">
+            <div class="pricing-table-card">
+              <div class="table-wrap">
+                <table id="pricing-table" class="pricing-table">
+                  <thead>
+                    <tr id="pricing-table-header">
+                      <th>Media Bus</th>
+                      <th>Space Iklan</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pricing-table-body"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <aside class="ppn-card">
+              <h3>PPN</h3>
+              <div class="ppn-toggle-row">
+                <span>PPN</span>
+                <label class="switch" aria-label="Toggle PPN">
+                  <input id="ppn-enabled" type="checkbox" checked />
+                  <span class="slider"></span>
+                </label>
+                <strong id="ppn-display-value">11%</strong>
+              </div>
+
+              <label class="slider-field">
+                <span>Persentase PPN</span>
+                <input id="ppn-percent" type="range" min="0" max="30" step="1" value="11" />
+              </label>
+
+              <div class="ppn-preview">
+                <div class="ppn-preview-row">
+                  <span>Harga Dasar</span>
+                  <strong id="ppn-base-preview">Rp0</strong>
+                </div>
+                <div class="ppn-preview-row">
+                  <span>PPN</span>
+                  <strong id="ppn-amount-preview">Rp0</strong>
+                </div>
+                <div class="ppn-preview-row total-row">
+                  <span>Total Setelah PPN</span>
+                  <strong id="ppn-total-preview">Rp0</strong>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- ==============================
+             HISTORY
+        ============================== -->
+        <section id="history" class="app-view data-panel" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">ARSIP</p><h2>History Branding</h2><p>Branding selesai tetap berada di collection <code>brandings</code>.</p></div><button id="export-history" type="button" class="secondary">Export CSV</button></div>
+          <div class="filters compact-filters"><label>Tahun<select id="history-year"><option value="">Semua Tahun</option></select></label><label>Bulan<select id="history-month"><option value="">Semua Bulan</option></select></label><label>Jalur<select id="history-route"><option value="">Semua Jalur</option></select></label><label>Nama Brand<select id="history-brand"><option value="">Semua Brand</option></select></label><label>Jenis Branding<select id="history-type"><option value="">Semua Jenis</option></select></label></div>
+          <div class="table-wrap"><table id="history-table"><thead><tr><th data-sort-key="no" class="sortable">No</th><th data-sort-key="jalur" class="sortable">Jalur</th><th data-sort-key="noLamb" class="sortable">No Lamb</th><th data-sort-key="status" class="sortable">Status</th><th data-sort-key="noPolisi" class="sortable">No Polisi</th><th data-sort-key="tipeBus" class="sortable">Type</th><th data-sort-key="namaBrand" class="sortable">Nama Brand</th><th data-sort-key="namaPT" class="sortable">Nama PT</th><th data-sort-key="tanggalSelesai" class="sortable">Akhir Penayangan</th><th data-sort-key="jenisBranding" class="sortable">Jenis Branding</th><th data-sort-key="keterangan" class="sortable">Keterangan</th></tr></thead><tbody id="history-body"></tbody></table></div>
+        </section>
+
+        <section id="buat-nota-dinas" class="app-view data-panel nota-app" hidden>
+          <header class="panel-heading">
+            <div>
+              <p class="eyebrow">DOKUMEN LEGAL</p>
+              <h2>Buat Nota Dinas ke Legal</h2>
+              <p>Generate nota dinas berdasarkan data booking atau branding yang sudah tersedia.</p>
+            </div>
+          </header>
+          <div class="nota-content">
+            <section class="nota-saved" aria-labelledby="nota-saved-title">
+              <div class="nota-section-heading">
+                <div><h3 id="nota-saved-title">Draft tersimpan</h3><p>Buka draft untuk melanjutkan, atau mulai dokumen baru.</p></div>
+                <button id="nota-new" type="button" class="secondary">Dokumen Baru</button>
+              </div>
+              <label for="nota-saved-list">Nota Dinas</label>
+              <div class="nota-saved-controls">
+                <select id="nota-saved-list"><option value="">Pilih nota dinas tersimpan</option></select>
+                <button id="nota-load" type="button" class="secondary">Buka</button>
+              </div>
+            </section>
+
+            <div class="nota-workspace">
+              <form id="nota-form" class="nota-form" novalidate>
+                <section class="nota-card">
+                  <div class="nota-section-heading"><div><span class="nota-step">01</span><div><h3>Informasi Surat</h3><p>Identitas nota dan data sumber.</p></div></div></div>
+                  <div class="nota-form-grid">
+                    <label>Tanggal Surat <span class="required-mark">*</span><input id="nota-document-date" type="date" required /></label>
+                    <label>Nomor Urut Nota Dinas <span class="required-mark">*</span><input id="nota-number" type="text" inputmode="numeric" pattern="[0-9]{1,3}" maxlength="3" placeholder="001" required autocomplete="off" /></label>
+                    <div class="nota-number-preview" aria-live="polite"><span>Nomor Nota Dinas</span><output id="nota-number-preview">Pilih tanggal surat dan nomor urut.</output></div>
+                    <label>Instansi <span class="required-mark">*</span><select id="nota-organization" required><option value="">Pilih instansi</option></select></label>
+                    <label>Referensi Surat <span class="required-mark">*</span><input id="nota-reference" required autocomplete="off" /></label>
+                    <label>Tanggal Surat Referensi <span class="required-mark">*</span><input id="nota-reference-date" type="date" required /></label>
+                    <label>Sumber Data <span class="required-mark">*</span><select id="nota-source" required><option value="">Pilih sumber</option><option value="Booking">Booking</option><option value="Branding">Branding</option></select></label>
+                    <label class="nota-record-search">Cari data sumber<input id="nota-record-search" type="search" placeholder="Cari brand, PT, No Lamb, atau No Polisi" autocomplete="off" /></label>
+                    <div class="nota-record-field">
+                      <div class="nota-record-label">Pilih data Booking / Branding <span class="required-mark">*</span></div>
+                      <div id="nota-record-options" class="nota-record-options" role="group" aria-label="Pilih satu atau lebih data Booking atau Branding" tabindex="-1"></div>
+                      <p id="nota-record-empty" class="nota-record-empty" aria-live="polite">Pilih sumber dan instansi untuk melihat data.</p>
+                    </div>
+                  </div>
+                  <p class="nota-help">Booking menampilkan data berstatus BOOKING; Branding menampilkan data berstatus PROSES, BERJALAN, atau SELESAI. Data harga memakai perhitungan yang sama dengan aplikasi.</p>
+                  <div class="nota-data-summary" id="nota-data-summary" aria-live="polite">
+                    <p class="nota-summary-empty">Pilih sumber dan instansi untuk melihat data.</p>
+                  </div>
+                  <div class="nota-items-area">
+                    <h4>Data terpilih untuk Nota Dinas</h4>
+                    <p class="nota-help">Baris mengikuti pilihan di atas. Hapus baris di sini untuk mengecualikannya dari dokumen.</p>
+                    <div class="table-wrap"><table class="nota-items-table"><thead><tr><th>No.</th><th>Instansi / Brand</th><th>Bus</th><th>Durasi</th><th>Harga Satuan / Bulan</th><th>Aksi</th></tr></thead><tbody id="nota-items-body"><tr><td colspan="6" class="empty-state">Silakan pilih minimal satu data Booking/Branding.</td></tr></tbody></table></div>
+                  </div>
+                  <button id="nota-generate" type="button" disabled>Generate Tabel</button>
+                </section>
+
+                <section class="nota-card">
+                  <div class="nota-section-heading"><div><span class="nota-step">02</span><div><h3>Metode Pembayaran</h3><p>Tentukan jumlah pembayaran dan batas waktunya.</p></div></div></div>
+                  <label class="nota-payment-label">Metode Pembayaran <span class="required-mark">*</span>
+                    <select id="nota-payment-method" required><option value="">Pilih metode</option><option value="1">1x Pembayaran</option><option value="3">3x Termin</option></select>
+                  </label>
+                  <div id="nota-payment-terms" class="nota-payment-terms"></div>
+                </section>
+
+                <p id="nota-message" class="nota-message" role="status" aria-live="polite"></p>
+              </form>
+
+              <section class="nota-editor-area" aria-labelledby="nota-editor-title">
+                <div class="nota-editor-header">
+                  <div><h3 id="nota-editor-title">Review &amp; Edit Nota Dinas</h3><p id="nota-status" class="nota-status">Belum dibuat</p></div>
+                  <div class="nota-actions">
+                    <button id="nota-preview-action" type="button" class="secondary" disabled>Preview</button>
+                    <button id="nota-print" type="button" class="secondary" disabled>Print</button>
+                    <button id="nota-pdf" type="button" class="secondary" disabled>Export PDF</button>
+                    <button id="nota-save" type="button" disabled>Simpan Draft</button>
+                    <button id="nota-finalize" type="button" class="nota-finalize" disabled>Finalisasi</button>
+                  </div>
+                </div>
+                <div class="nota-toolbar" id="nota-toolbar" hidden aria-label="Format dokumen">
+                  <button type="button" data-command="bold" aria-label="Tebal"><strong>B</strong></button>
+                  <button type="button" data-command="italic" aria-label="Miring"><em>I</em></button>
+                  <button type="button" data-command="underline" aria-label="Garis bawah"><u>U</u></button>
+                  <span class="nota-toolbar-divider"></span>
+                  <button type="button" data-command="justifyLeft" aria-label="Rata kiri">Rata kiri</button>
+                  <button type="button" data-command="justifyCenter" aria-label="Rata tengah">Tengah</button>
+                  <button type="button" data-command="justifyFull" aria-label="Rata kanan kiri">Rata kanan-kiri</button>
+                  <span class="nota-toolbar-divider"></span>
+                  <button id="nota-add-row" type="button">Tambah baris</button>
+                  <button id="nota-remove-row" type="button">Hapus baris terakhir</button>
+                  <button id="nota-move-row-up" type="button">Pindah baris ↑</button>
+                  <button id="nota-move-row-down" type="button">Pindah baris ↓</button>
+                </div>
+                <div class="nota-document-frame">
+                  <article id="nota-document" class="nota-document" aria-label="Pratinjau Nota Dinas" contenteditable="false"></article>
+                </div>
+                <div class="nota-editor-footer">
+                  <span>Data booking/branding asli tidak diubah oleh editor dokumen.</span>
+                  <span id="nota-audit"></span>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section id="kirim-surat-penawaran" class="app-view data-panel offer-panel" hidden>
+          <div class="panel-heading offer-heading">
+            <div><p class="eyebrow">DOKUMEN · SURAT PENAWARAN</p><h2>Kirim Surat Penawaran</h2><p>Susun surat dari data Booking/Branding dan pricelist aktif. Pratinjau dan PDF mengikuti template A4 tujuh halaman.</p></div>
+            <div class="offer-actions"><button id="offer-preview" type="button" class="secondary">Perbarui Pratinjau</button><button id="offer-pdf" type="button" disabled>Unduh PDF</button></div>
+          </div>
+          <p id="offer-message" class="offer-message" role="status" aria-live="polite"></p>
+          <div class="offer-workspace">
+            <form id="offer-form" class="offer-form" novalidate>
+              <section class="offer-card">
+                <div class="offer-card-heading"><span>01</span><div><h3>Data sumber</h3><p>Pilih satu atau beberapa armada dari Booking atau Branding.</p></div></div>
+                <div class="offer-form-grid">
+                  <label>Sumber data<select id="offer-source"><option value="Booking">Booking</option><option value="Branding">Branding</option></select></label>
+                  <label>Cari perusahaan, brand, bus, atau referensi<input id="offer-search" type="search" autocomplete="off" placeholder="Cari data..." /></label>
+                  <div id="offer-record-options" class="offer-record-options" role="group" aria-label="Data Booking atau Branding"></div>
+                  <p id="offer-record-empty" class="offer-help" aria-live="polite">Memuat data sumber...</p>
+                  <div class="offer-selected-wrap"><h4>Data terpilih <span id="offer-selected-count">0</span></h4><div class="table-wrap"><table class="offer-selected-table"><thead><tr><th>Perusahaan / Brand</th><th>Armada</th><th>Jenis &amp; Durasi</th><th>Harga</th><th>Aksi</th></tr></thead><tbody id="offer-selected-body"><tr><td colspan="5" class="empty-state">Pilih data Booking/Branding.</td></tr></tbody></table></div></div>
+                </div>
+              </section>
+              <section class="offer-card">
+                <div class="offer-card-heading"><span>02</span><div><h3>Informasi surat</h3><p>Nomor surat dipertahankan persis seperti yang dimasukkan.</p></div></div>
+                <div class="offer-form-grid">
+                  <label>Nomor surat<input id="offer-number" type="text" autocomplete="off" /></label>
+                  <label>Lampiran<input id="offer-attachment" type="text" autocomplete="off" /></label>
+                  <label class="offer-field-wide">Perihal<input id="offer-subject" type="text" autocomplete="off" /></label>
+                  <label>Tanggal surat<input id="offer-date" type="date" /></label>
+                  <label>Nama penerima<input id="offer-recipient" type="text" autocomplete="off" /></label>
+                  <label>Jabatan penerima<input id="offer-recipient-title" type="text" autocomplete="off" /></label>
+                  <label>Perusahaan / instansi<input id="offer-company" type="text" autocomplete="off" /></label>
+                  <label>Lokasi penerima<input id="offer-location" type="text" autocomplete="off" /></label>
+                  <label class="offer-field-wide">Referensi / sumber<input id="offer-reference" type="text" autocomplete="off" /></label>
+                </div>
+              </section>
+              <p class="offer-help">Dokumen ini hanya membaca data aplikasi. Pembuatan PDF tidak mengubah Booking, Branding, atau data produksi.</p>
+            </form>
+            <section class="offer-preview-area" aria-labelledby="offer-preview-title">
+              <div class="offer-preview-heading"><div><h3 id="offer-preview-title">Pratinjau dokumen</h3><p>7 halaman A4 tetap · surat penawaran dan lampiran teknis.</p></div><span id="offer-preview-status">Menunggu data</span></div>
+              <div id="offer-pages" class="offer-pages" aria-live="polite"></div>
+            </section>
+          </div>
+        </section>
+        <section id="kirim-surat-konfirmasi" class="app-view data-panel confirmation-panel" hidden>
+          <div class="panel-heading confirmation-heading">
+            <div><p class="eyebrow">DOKUMEN · SURAT KONFIRMASI</p><h2>Kirim Surat Konfirmasi</h2><p>Susun balasan minat sewa dari data Booking/Branding dan pricelist aktif. Dokumen hanya membaca data aplikasi.</p></div>
+            <div class="confirmation-actions"><button id="confirmation-refresh" type="button" class="secondary">Perbarui Pratinjau</button><button id="confirmation-pdf" type="button" disabled>Unduh PDF A4</button></div>
+          </div>
+          <p id="confirmation-message" class="confirmation-message" role="status" aria-live="polite"></p>
+          <div class="confirmation-workspace">
+            <form id="confirmation-form" class="confirmation-form" novalidate>
+              <section class="confirmation-card">
+                <div class="confirmation-card-heading"><span>01</span><div><h3>Data sumber</h3><p>Pilih perusahaan dan armada dari Booking atau Branding.</p></div></div>
+                <div class="confirmation-form-grid">
+                  <label>Sumber data<select id="confirmation-source"><option value="Booking">Booking</option><option value="Branding">Branding</option></select></label>
+                  <label>Instansi / calon mitra *<select id="confirmation-company"><option value="">Pilih instansi</option></select></label>
+                  <label class="confirmation-field-wide">Cari brand, bus, atau referensi<input id="confirmation-search" type="search" autocomplete="off" placeholder="Cari data..." /></label>
+                  <div id="confirmation-record-options" class="confirmation-record-options" role="group" aria-label="Data Booking atau Branding"></div>
+                  <p id="confirmation-record-empty" class="confirmation-help" aria-live="polite">Memuat data sumber...</p>
+                  <div class="confirmation-selected-wrap"><h4>Data terpilih <span id="confirmation-selected-count">0</span></h4><div class="table-wrap"><table class="confirmation-selected-table"><thead><tr><th>Brand / Instansi</th><th>Armada</th><th>Jenis / Durasi</th><th>Harga dasar</th><th>Aksi</th></tr></thead><tbody id="confirmation-selected-body"><tr><td colspan="5" class="empty-state">Pilih data Booking/Branding.</td></tr></tbody></table></div></div>
+                </div>
+              </section>
+              <section class="confirmation-card">
+                <div class="confirmation-card-heading"><span>02</span><div><h3>Informasi surat</h3><p>Nomor surat bebas, mengikuti format yang ditetapkan sekretariat.</p></div></div>
+                <div class="confirmation-form-grid">
+                  <label>Nomor surat *<input id="confirmation-number" type="text" autocomplete="off" /></label>
+                  <label>Lampiran<input id="confirmation-attachment" type="text" autocomplete="off" /></label>
+                  <label class="confirmation-field-wide">Perihal *<input id="confirmation-subject" type="text" autocomplete="off" value="Surat Balasan Minat Sewa Branding Bus Trans Jogja" /></label>
+                  <label>Tanggal surat *<input id="confirmation-date" type="date" /></label>
+                  <label>Nomor surat referensi *<input id="confirmation-reference-number" type="text" autocomplete="off" /></label>
+                  <label>Tanggal surat referensi *<input id="confirmation-reference-date" type="date" /></label>
+                  <label class="confirmation-field-wide">Tentang surat referensi<input id="confirmation-reference-subject" type="text" autocomplete="off" /></label>
+                </div>
+              </section>
+              <section class="confirmation-card">
+                <div class="confirmation-card-heading"><span>03</span><div><h3>Penerima</h3><p>Isi berdasarkan surat atau data yang diterima; informasi penerima tidak dibuat otomatis.</p></div></div>
+                <div class="confirmation-form-grid">
+                  <label>Jabatan penerima *<input id="confirmation-recipient-position" type="text" autocomplete="off" /></label>
+                  <label>Nama penerima *<input id="confirmation-recipient-name" type="text" autocomplete="off" /></label>
+                  <label>Lokasi / alamat penerima *<input id="confirmation-recipient-location" type="text" autocomplete="off" value="Di Tempat" /></label>
+                  <label class="confirmation-field-wide">Keterangan materi / kampanye<input id="confirmation-campaign" type="text" autocomplete="off" /></label>
+                </div>
+              </section>
+              <p class="confirmation-help">Harga satuan diambil dari pricelist aktif untuk jenis media, space, dan durasi yang dipilih. PPN 11% dihitung pada surat. Pembuatan PDF tidak mengubah Booking, Branding, atau data produksi.</p>
+            </form>
+            <section class="confirmation-preview-area" aria-labelledby="confirmation-preview-title">
+              <div class="confirmation-preview-heading"><div><h3 id="confirmation-preview-title">Pratinjau dokumen</h3><p>Surat resmi A4 portrait · isi mengikuti data yang dipilih.</p></div><span id="confirmation-preview-status">Menunggu data</span></div>
+              <div id="confirmation-pages" class="confirmation-pages" aria-live="polite"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="admin-accounts" class="app-view data-panel" hidden>
+          <div class="panel-heading">
+            <div><p class="eyebrow">ADMIN</p><h2>Akun &amp; Akses</h2><p>Kelola role dan status akses akun yang telah terdaftar di Firebase Authentication.</p></div>
+            <div class="button-group"><button id="admin-user-add" type="button">Daftarkan Akun yang Ada</button><button id="admin-users-refresh" type="button" class="secondary">Refresh</button></div>
+          </div>
+          <div class="admin-account-tabs" role="tablist" aria-label="Tampilan pengelolaan akun">
+            <button id="admin-accounts-tab" class="admin-account-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="admin-accounts-panel" tabindex="0" data-admin-account-tab="accounts">Akun</button>
+            <button id="admin-access-tab" class="admin-account-tab" type="button" role="tab" aria-selected="false" aria-controls="admin-access-panel" tabindex="-1" data-admin-account-tab="access">Akses</button>
+          </div>
+          <div id="admin-accounts-panel" class="admin-account-panel" role="tabpanel" aria-labelledby="admin-accounts-tab" tabindex="0">
+            <p id="admin-account-note" class="admin-config-note"></p>
+            <div class="table-wrap"><table><thead><tr><th>No</th><th>Nama</th><th>Email</th><th>Role</th><th>Status</th><th>Terakhir Diperbarui</th><th>Aksi</th><th>Online</th></tr></thead><tbody id="admin-users-body"><tr><td colspan="8" class="empty-state">Memuat akun…</td></tr></tbody></table></div>
+          </div>
+          <div id="admin-access-panel" class="admin-account-panel" role="tabpanel" aria-labelledby="admin-access-tab" tabindex="0" hidden>
+            <div class="admin-access-toolbar">
+              <label for="admin-access-account">Akun yang dipilih</label>
+              <select id="admin-access-account" aria-describedby="admin-access-note">
+                <option value="">Pilih akun</option>
+              </select>
+            </div>
+            <p id="admin-access-note" class="admin-config-note">Pilih akun untuk melihat izin berdasarkan role dan permission khusus akun.</p>
+            <div id="admin-access-empty" class="admin-access-empty">Pilih akun untuk melihat detail akses.</div>
+            <div id="admin-access-details" hidden>
+              <section class="admin-selected-account" aria-labelledby="admin-selected-account-title">
+                <div class="admin-selected-account-heading"><div><p class="eyebrow">ACCOUNT</p><h3 id="admin-selected-account-title">Akun</h3></div><span id="admin-selected-account-status" class="admin-account-status"></span></div>
+                <dl class="admin-account-details">
+                  <div><dt>Nama</dt><dd id="admin-selected-account-name">—</dd></div>
+                  <div><dt>Email</dt><dd id="admin-selected-account-email">—</dd></div>
+                  <div><dt>Role</dt><dd id="admin-selected-account-role">—</dd></div>
+                  <div><dt>Status</dt><dd id="admin-selected-account-active">—</dd></div>
+                </dl>
+              </section>
+              <section class="admin-effective-access" aria-labelledby="admin-effective-access-title">
+                <div class="admin-effective-heading"><div><p class="eyebrow">EFFECTIVE ACCESS</p><h3 id="admin-effective-access-title">Izin efektif</h3></div><p id="admin-access-source" class="admin-config-note"></p></div>
+                <div id="admin-superadmin-notice" class="admin-superadmin-notice" hidden><strong>SUPERADMIN</strong><span>Super Admin memiliki seluruh akses sistem secara otomatis.</span></div>
+                <div id="admin-permission-groups" class="admin-permission-groups"></div>
+                <div id="admin-access-actions" class="modal-actions" hidden>
+                  <button id="admin-access-cancel" type="button" class="secondary">Batal</button>
+                  <button id="admin-access-save" type="button">Simpan Akses</button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section id="admin-master-data" class="app-view data-panel" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">ADMIN</p><h2>Master Data &amp; Dropdown</h2><p>Kelola nilai untuk pemilihan data baru. Nilai historis tidak dihapus.</p></div></div>
+          <div class="filters compact-filters">
+            <label>Kategori<select id="admin-master-data-category"><option value="trayek">Trayek</option><option value="busTypes">Tipe Bus</option><option value="brandingTypes">Jenis Branding</option><option value="jalur">Jalur</option></select></label>
+          </div>
+          <p id="admin-master-data-category-title" class="admin-config-note">Trayek</p>
+          <form id="admin-master-data-form" class="admin-master-data-form">
+            <label>Tambah nilai<input id="admin-master-data-value" type="text" required maxlength="80" /></label>
+            <button type="submit">Tambah</button>
+          </form>
+          <div class="table-wrap"><table><thead><tr><th>Kode / Nilai</th><th>Nama / Tampilan</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="admin-master-data-body"><tr><td colspan="4" class="empty-state">Memuat master data…</td></tr></tbody></table></div>
+        </section>
+
+        <section id="access-denied" class="app-view data-panel" hidden>
+          <div class="panel-heading"><div><p class="eyebrow">AKSES DITOLAK</p><h2>Akun belum aktif</h2><p>Akun ini belum memiliki role yang valid atau telah dinonaktifkan. Hubungi Super Admin.</p></div></div>
+        </section>
+
+        <!-- App Footer -->
+        <footer class="app-footer">
+          <img src="icon/logo-icon.png" alt="Trans Jogja" class="app-footer-logo" />
+          <span>2026 &copy; Andhika Febri - Unit Transportasi - PT AMI</span>
+        </footer>
+      </main>
+    </div>
+
+    <p id="app-notice" class="app-notice" role="status" aria-live="polite"></p>
+
+    <dialog id="admin-user-dialog" class="bus-modal" aria-labelledby="admin-user-dialog-title">
+      <form id="admin-user-form" method="dialog">
+        <div class="modal-heading"><div><p class="eyebrow">ADMIN</p><h2 id="admin-user-dialog-title">Edit Akun &amp; Akses</h2></div><button id="admin-user-cancel" type="button" class="icon-button" aria-label="Tutup" data-admin-user-close>×</button></div>
+        <p class="modal-note">UID harus berasal dari akun Firebase Authentication yang sudah dibuat. Form ini tidak membuat atau menonaktifkan akun Firebase Auth.</p>
+        <div class="bus-edit-grid">
+          <label>Firebase UID<input name="uid" required autocomplete="off" /></label>
+          <label>Nama<input name="displayName" required /></label>
+          <label>Email<input name="email" type="email" required /></label>
+          <label>Role<select name="role" required><option value="superadmin">Super Admin</option><option value="admin">Admin</option><option value="operator">Operator</option><option value="viewer">Viewer</option></select></label>
+          <label class="admin-account-active">Status <span><input name="active" type="checkbox" checked /> Active</span></label>
+        </div>
+        <p id="admin-user-error" class="modal-error" role="alert"></p>
+        <div class="modal-actions"><button type="button" class="secondary" data-admin-user-close>Batal</button><button type="submit">Simpan Akses</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="admin-delete-user-dialog" class="bus-modal confirm-modal" aria-labelledby="admin-delete-user-title">
+      <form id="admin-delete-user-form">
+        <div class="modal-heading"><div><p class="eyebrow">ADMIN</p><h2 id="admin-delete-user-title">Hapus akun ini?</h2></div><button type="button" class="icon-button" aria-label="Tutup" data-admin-delete-close>×</button></div>
+        <dl class="admin-delete-account-details">
+          <div><dt>Nama</dt><dd id="admin-delete-user-name">—</dd></div>
+          <div><dt>Email</dt><dd id="admin-delete-user-email">—</dd></div>
+          <div><dt>Role</dt><dd id="admin-delete-user-role">—</dd></div>
+        </dl>
+        <p class="admin-delete-warning">Akun ini akan kehilangan akses ke aplikasi.</p>
+        <p id="admin-delete-user-error" class="modal-error" role="alert"></p>
+        <div class="modal-actions"><button type="button" class="secondary" data-admin-delete-close>Batal</button><button id="admin-delete-user-submit" type="submit" class="danger">Hapus Akun</button></div>
+      </form>
+    </dialog>
+
+    <!-- Bus Edit Modal -->
+    <dialog id="bus-edit-modal" class="bus-modal" aria-labelledby="bus-modal-title"><form id="bus-edit-form" method="dialog"><div class="modal-heading"><div><p class="eyebrow">MASTER BUS</p><h2 id="bus-modal-title">Edit Bus</h2></div><button id="close-bus-modal" type="button" class="icon-button" aria-label="Tutup">×</button></div><p id="bus-modal-note" class="modal-note">No Polisi adalah identifier dokumen Firestore dan dikunci agar perubahan tidak membuat dokumen bus baru.</p><div class="bus-edit-grid"><label>No<input name="no" inputmode="numeric" /></label><label>No Polisi<input name="noPolisi" required /></label><label>Tipe Bus<select name="tipeBus" required><option value="">Pilih tipe bus</option></select></label><label>Kode Trayek<select name="kodeTrayek" id="bus-trayek"><option value="">Kode trayek belum tersedia</option></select></label><label>Nama Trayek<input id="bus-trayek-name" type="text" readonly placeholder="Terisi otomatis dari Kode Trayek" /></label><label>No Lamb<input name="noLamb" required /></label><label>Ket<input name="ket" /></label><label>Warna Bus<input name="warnaBus" /></label><label>Jalur Bus<select name="jalurBus" required><option value="">Pilih jalur</option></select></label><label>Karoseri<input name="karoseri" /></label></div><p id="bus-trayek-warning" class="bus-trayek-warning" hidden>Kode trayek belum tersedia. Nama rute tidak akan ditebak.</p><div class="modal-actions"><button id="cancel-bus-edit" type="button" class="secondary">Batal</button><button id="save-bus-edit" type="submit">Simpan Perubahan</button></div></form></dialog>
+
+    <!-- Branding Edit Modal -->
+    <dialog id="branding-edit-modal" class="bus-modal" aria-labelledby="branding-modal-title"><form id="branding-edit-form" method="dialog"><div class="modal-heading"><div><p class="eyebrow">DATA BRANDING</p><h2 id="branding-modal-title">Edit Branding</h2></div><button id="close-branding-modal" type="button" class="icon-button" aria-label="Tutup">×</button></div><div class="bus-edit-grid branding-edit-grid"><label>Nama Brand<input name="namaBrand" required /></label><label>Nama PT<input name="namaPT" required /></label><label>Jenis Branding<select name="jenisBranding" required><option>Full Body</option><option>Back Body</option><option>Side Body</option></select></label><label>Bus / No Polisi<select id="edit-branding-bus" name="noPolisi" required></select></label><label>Tanggal Booking<input name="tanggalBooking" type="date" required /></label><label>Tanggal Mulai Penayangan<input name="tanggalMulai" type="date" required /></label><label>Tanggal Akhir Penayangan<input name="tanggalSelesai" type="date" required /></label><label>Status Branding<select name="status" required><option>BOOKING</option><option>PROSES</option><option>BERJALAN</option><option>SELESAI</option></select></label><label class="modal-wide">Keterangan<textarea name="keterangan" rows="3"></textarea></label></div><p id="branding-edit-error" class="modal-error" role="alert"></p><div class="modal-actions"><button id="cancel-branding-edit" type="button" class="secondary">Batal</button><button id="save-branding-edit" type="submit">Simpan Perubahan</button></div></form></dialog>
+
+    <!-- Global Confirm Modal -->
+    <dialog id="global-confirm-modal" class="bus-modal confirm-modal" aria-labelledby="confirm-modal-title"><form id="global-confirm-form" method="dialog"><div class="modal-heading"><div><h2 id="confirm-modal-title">Konfirmasi</h2></div><button id="close-confirm-modal" type="button" class="icon-button" aria-label="Tutup">×</button></div><div class="confirm-message-wrapper"><p id="confirm-modal-message" class="confirm-message"></p></div><div class="modal-actions"><button id="cancel-confirm-btn" type="button" class="secondary">Batal</button><button id="submit-confirm-btn" type="submit">Konfirmasi</button></div></form></dialog>
+
+    <!-- Admin Detail Modal -->
+    <dialog id="admin-detail-modal" class="bus-modal admin-modal" aria-labelledby="admin-modal-title">
+      <div class="admin-modal-inner">
+        <div class="modal-heading">
+          <div>
+            <p class="eyebrow">ADMINISTRASI BRANDING</p>
+            <h2 id="admin-modal-title">Kelengkapan Administrasi Branding</h2>
+            <p id="admin-modal-subtitle" class="admin-modal-subtitle"></p>
+          </div>
+          <button id="close-admin-modal" type="button" class="icon-button" aria-label="Tutup">×</button>
+        </div>
+
+        <!-- Bus List -->
+        <div class="admin-bus-section">
+          <p class="admin-section-label">Bus:</p>
+          <p id="admin-bus-list" class="admin-bus-list">Memuat…</p>
+        </div>
+
+        <!-- 6 Document Categories -->
+        <div class="admin-doc-grid">
+
+          <!-- 1. Perjanjian Kerja Sama -->
+          <div class="admin-doc-card" data-doc-key="pks">
+            <div class="admin-doc-header">
+              <span class="admin-doc-icon">📄</span>
+              <div class="admin-doc-meta">
+                <span class="admin-doc-name">Perjanjian Kerja Sama</span>
+                <span class="admin-doc-hint">PDF • Maks. 2 MB</span>
+              </div>
+            </div>
+            <div class="admin-doc-status" data-doc-status="pks"></div>
+            <div class="admin-doc-actions" data-doc-actions="pks"></div>
+          </div>
+
+          <!-- 2. Invoice -->
+          <div class="admin-doc-card" data-doc-key="invoice">
+            <div class="admin-doc-header">
+              <span class="admin-doc-icon">🧾</span>
+              <div class="admin-doc-meta">
+                <span class="admin-doc-name">Invoice</span>
+                <span class="admin-doc-hint">PDF • Maks. 500 KB</span>
+              </div>
+            </div>
+            <div class="admin-doc-status" data-doc-status="invoice"></div>
+            <div class="admin-doc-actions" data-doc-actions="invoice"></div>
+          </div>
+
+          <!-- 3. Bukti Transfer -->
+          <div class="admin-doc-card" data-doc-key="buktiTransfer">
+            <div class="admin-doc-header">
+              <span class="admin-doc-icon">💳</span>
+              <div class="admin-doc-meta">
+                <span class="admin-doc-name">Bukti Transfer</span>
+                <span class="admin-doc-hint">PDF • Maks. 500 KB</span>
+              </div>
+            </div>
+            <div class="admin-doc-status" data-doc-status="buktiTransfer"></div>
+            <div class="admin-doc-actions" data-doc-actions="buktiTransfer"></div>
+          </div>
+
+          <!-- 4. Kwitansi -->
+          <div class="admin-doc-card" data-doc-key="kwitansi">
+            <div class="admin-doc-header">
+              <span class="admin-doc-icon">🧾</span>
+              <div class="admin-doc-meta">
+                <span class="admin-doc-name">Kwitansi</span>
+                <span class="admin-doc-hint">PDF • Maks. 500 KB</span>
+              </div>
+            </div>
+            <div class="admin-doc-status" data-doc-status="kwitansi"></div>
+            <div class="admin-doc-actions" data-doc-actions="kwitansi"></div>
+          </div>
+
+          <!-- 5. Faktur Pajak -->
+          <div class="admin-doc-card" data-doc-key="fakturPajak">
+            <div class="admin-doc-header">
+              <span class="admin-doc-icon">📑</span>
+              <div class="admin-doc-meta">
+                <span class="admin-doc-name">Faktur Pajak</span>
+                <span class="admin-doc-hint">PDF • Maks. 500 KB</span>
+              </div>
+            </div>
+            <div class="admin-doc-status" data-doc-status="fakturPajak"></div>
+            <div class="admin-doc-actions" data-doc-actions="fakturPajak"></div>
+          </div>
+
+          <!-- 6. Foto Branding (per-bus) -->
+          <div class="admin-doc-card admin-doc-card-wide" data-doc-key="fotoBranding">
+            <div class="admin-doc-header">
+              <span class="admin-doc-icon">📷</span>
+              <div class="admin-doc-meta">
+                <span class="admin-doc-name">Foto Branding</span>
+                <span class="admin-doc-hint">JPG / JPEG / PNG • Maks. 500 KB</span>
+              </div>
+              <span id="admin-foto-count" class="admin-foto-badge"></span>
+            </div>
+            <div class="admin-foto-bus-list" id="admin-foto-bus-list"></div>
+          </div>
+
+        </div><!-- /.admin-doc-grid -->
+
+        <!-- Upload error message -->
+        <p id="admin-upload-error" class="admin-upload-error" role="alert"></p>
+
+        <!-- Hidden file input for uploads -->
+        <input type="file" id="admin-file-input" style="display:none" />
+      </div>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script>
+      (function () {
+        const defaultPricing = [
+          { mediaBus: 'Trans Jogja - Medium', spaceIklan: 'Left Body', durations: { 1: 5616000, 3: 11500000, 6: 17750000, 12: 29500000 } },
+          { mediaBus: 'Trans Jogja - Medium', spaceIklan: 'Right Body', durations: { 1: 5616000, 3: 11500000, 6: 17750000, 12: 29500000 } },
+          { mediaBus: 'Trans Jogja - Medium', spaceIklan: 'Full Back Body', durations: { 1: 5616000, 3: 11500000, 6: 17750000, 12: 29500000 } },
+          { mediaBus: 'Trans Jogja - Medium', spaceIklan: 'Full Body', durations: { 1: 12000000, 3: 29000000, 6: 50040000, 12: 86105000 } }
+        ];
+
+        const PRICE_STORAGE_KEY = 'branding-price-list-v1';
+        const PPN_STORAGE_KEY = 'branding-pricing-ppn-v1';
+        // Every month can be configured. A missing value remains unconfigured
+        // and is reported to the user instead of being guessed from another tier.
+        const DURATION_ORDER = Array.from({ length: 12 }, (_, index) => index + 1);
+
+        function getStoredValue(storageKey, fallback) {
+          try {
+            const raw = localStorage.getItem(storageKey);
+            if (!raw) return fallback;
+            const parsed = JSON.parse(raw);
+            return parsed ?? fallback;
+          } catch (error) {
+            return fallback;
+          }
+        }
+
+        function setStoredValue(storageKey, value) {
+          localStorage.setItem(storageKey, JSON.stringify(value));
+        }
+
+        function getPricingList() {
+          const stored = getStoredValue(PRICE_STORAGE_KEY, null);
+          if (Array.isArray(stored) && stored.length) return stored;
+          setStoredValue(PRICE_STORAGE_KEY, defaultPricing);
+          return defaultPricing;
+        }
+
+        function getPpnConfig() {
+          const stored = getStoredValue(PPN_STORAGE_KEY, null);
+          if (stored && typeof stored === 'object') {
+            return {
+              enabled: stored.enabled !== false,
+              percent: Number(stored.percent || 11)
+            };
+          }
+          const defaultConfig = { enabled: true, percent: 11 };
+          setStoredValue(PPN_STORAGE_KEY, defaultConfig);
+          return defaultConfig;
+        }
+
+        function savePpnConfig(config) {
+          setStoredValue(PPN_STORAGE_KEY, config);
+        }
+
+        window.applyBrandingPricingConfiguration = (configuration) => {
+          if (!configuration || !Array.isArray(configuration.priceList)) return;
+          setStoredValue(PRICE_STORAGE_KEY, configuration.priceList);
+          if (configuration.ppn && typeof configuration.ppn === 'object') {
+            savePpnConfig(configuration.ppn);
+            const enabled = document.getElementById('ppn-enabled');
+            const percent = document.getElementById('ppn-percent');
+            if (enabled) enabled.checked = configuration.ppn.enabled !== false;
+            if (percent) percent.value = String(Number(configuration.ppn.percent || 0));
+          }
+          window.__brandingPricingVersion = Number(configuration.version || 0);
+          window.__brandingPricingShared = true;
+          renderPricingTable();
+          renderRevenueDashboard();
+          window.dispatchEvent(new Event('branding-pricing-updated'));
+        };
+
+        function formatRupiah(value) {
+          const amount = Number(value) || 0;
+          return new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            maximumFractionDigits: 0
+          }).format(amount);
+        }
+        window.formatRupiah = formatRupiah;
+
+        function niceRevenueScaleMax(values) {
+          const nums = (Array.isArray(values) ? values : []).map((value) => Number(value) || 0);
+          const maxValue = nums.length ? Math.max(0, ...nums.filter((value) => Number.isFinite(value))) : 0;
+          if (!maxValue || !Number.isFinite(maxValue)) return 10_000_000;
+
+          const padded = maxValue * 1.2;
+          const exp = Math.floor(Math.log10(padded));
+          const magnitude = 10 ** exp;
+          const n = padded / magnitude;
+          const nice = n <= 1 ? 1
+            : n <= 1.25 ? 1.25
+            : n <= 1.5 ? 1.5
+            : n <= 2 ? 2
+            : n <= 2.5 ? 2.5
+            : n <= 3 ? 3
+            : n <= 4 ? 4
+            : n <= 5 ? 5
+            : n <= 6 ? 6
+            : n <= 8 ? 8
+            : 10;
+          const result = nice * magnitude;
+          return Number.isFinite(result) && result > 0 ? result : 10_000_000;
+        }
+        window.niceRevenueScaleMax = niceRevenueScaleMax;
+
+        function formatAxisRupiah(value) {
+          const amount = Number(value);
+          if (!Number.isFinite(amount) || amount === 0) return 'Rp 0';
+          const abs = Math.abs(amount);
+          const compact = abs >= 1_000_000_000
+            ? { number: amount / 1_000_000_000, suffix: ' M' }
+            : abs >= 1_000_000
+              ? { number: amount / 1_000_000, suffix: ' jt' }
+              : abs >= 1_000
+                ? { number: amount / 1_000, suffix: ' rb' }
+                : { number: amount, suffix: '' };
+          const formatted = new Intl.NumberFormat('id-ID', {
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 0
+          }).format(compact.number);
+          return `Rp ${formatted}${compact.suffix}`;
+        }
+        window.formatAxisRupiah = formatAxisRupiah;
+
+        function revenueChartYScale(values) {
+          const max = niceRevenueScaleMax(values);
+          return {
+            beginAtZero: true,
+            max,
+            border: { display: false },
+            grid: { color: 'rgba(115, 135, 126, 0.14)' },
+            ticks: {
+              stepSize: max / 5,
+              maxTicksLimit: 6,
+              autoSkip: true,
+              color: '#73877e',
+              callback: (tickValue) => formatAxisRupiah(tickValue)
+            }
+          };
+        }
+        window.revenueChartYScale = revenueChartYScale;
+
+        function normalizeLookupValue(value) {
+          return String(value || '').trim().replace(/\s+/g, ' ').toLowerCase();
+        }
+
+        function getBookingNoPolisi(booking) {
+          return String(
+            booking.noPolisi
+            || booking['No Polisi']
+            || booking.no_polisi
+            || ''
+          ).trim();
+        }
+
+        function getMasterBusForBooking(booking) {
+          const dashboardData = window.__brandingDashboardData || {};
+          const buses = Array.isArray(dashboardData.buses) ? dashboardData.buses : [];
+          const noPolisi = normalizeLookupValue(getBookingNoPolisi(booking));
+          if (!noPolisi) return null;
+          return buses.find((bus) => normalizeLookupValue(
+            bus.noPolisi || bus['No Polisi'] || bus.no_polisi
+          ) === noPolisi) || null;
+        }
+
+        function getPricingMediaCategories() {
+          return [...new Set(getPricingList()
+            .map((entry) => String(entry.mediaBus || '').trim())
+            .filter(Boolean))];
+        }
+
+        function resolveMediaCategory(booking) {
+          const masterBus = getMasterBusForBooking(booking);
+          const candidates = [
+            masterBus?.mediaBus,
+            masterBus?.['Media Bus'],
+            masterBus?.mediaCategory,
+            masterBus?.kategoriMedia,
+            masterBus?.kategoriBus,
+            masterBus?.category,
+            booking.mediaBus,
+            booking['Media Bus']
+          ].map((candidate) => String(candidate || '').trim()).filter(Boolean);
+          const pricingCategories = getPricingMediaCategories();
+          const categoryByName = new Map(pricingCategories.map((category) => [normalizeLookupValue(category), category]));
+          const explicitCategory = candidates.find((candidate) => categoryByName.has(normalizeLookupValue(candidate)));
+          if (explicitCategory) return categoryByName.get(normalizeLookupValue(explicitCategory));
+
+          const busType = String(
+            masterBus?.tipeBus
+            || masterBus?.['Tipe Bus']
+            || booking.tipeBus
+            || booking['Tipe Bus']
+            || ''
+          ).trim();
+          if (!busType) return '';
+
+          // The current Master Bus data stores the fleet model, while the
+          // pricing master stores its commercial media category.
+          const currentMediumFleet = /^(md bus 2024|isuzu nqr 71 2016|hino fb ?130 2017|hino fb ?130 2019|hino gb 150 2023)$/i;
+          if (currentMediumFleet.test(busType)) {
+            return pricingCategories.find((category) => normalizeLookupValue(category) === 'trans jogja - medium') || '';
+          }
+          return '';
+        }
+
+        function getBookingMediaBus(booking) {
+          return resolveMediaCategory(booking);
+        }
+
+        function getBookingSpace(booking) {
+          const space = booking.jenisBranding || booking['Jenis Branding'] || booking.jenis_branding || booking.spaceIklan || booking['Space Iklan'];
+          const normalized = String(space || '').trim();
+          if (/^full\s+back\s+body$/i.test(normalized)) return 'Back Body';
+          if (/full/i.test(normalized)) return 'Full Body';
+          if (/back/i.test(normalized)) return 'Back Body';
+          if (/side/i.test(normalized)) return 'Side Body';
+          return normalized;
+        }
+
+        function parseIso(dateValue) {
+          if (!dateValue) return null;
+          if (dateValue instanceof Date) {
+            return Number.isNaN(dateValue.getTime())
+              ? null
+              : new Date(dateValue.getFullYear(), dateValue.getMonth(), dateValue.getDate());
+          }
+          if (typeof dateValue === 'object') {
+            if (typeof dateValue.toDate === 'function') return parseIso(dateValue.toDate());
+            if (typeof dateValue.seconds === 'number') return parseIso(new Date(dateValue.seconds * 1000));
+          }
+
+          const value = String(dateValue).trim();
+          if (!value) return null;
+          const normalizedValue = typeof window.parseBrandingDateToIso === 'function'
+            ? window.parseBrandingDateToIso(value)
+            : value;
+          if (normalizedValue !== value) return parseIso(normalizedValue);
+
+          let year;
+          let month;
+          let day;
+          let match = value.match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:$|T|\s)/);
+          if (match) {
+            [, year, month, day] = match.map(Number);
+          } else {
+            match = value.match(/^(\d{1,2})[/-](\d{1,2})[/-](\d{4})(?:$|\s)/);
+            if (!match) return null;
+            [, day, month, year] = match.map(Number);
+          }
+
+          const parsed = new Date(year, month - 1, day);
+          if (
+            Number.isNaN(parsed.getTime())
+            || parsed.getFullYear() !== year
+            || parsed.getMonth() !== month - 1
+            || parsed.getDate() !== day
+          ) {
+            return null;
+          }
+          return parsed;
+        }
+
+        function getBookingDurationMonths(booking) {
+          return typeof window.getContractDurationMonths === 'function'
+            ? window.getContractDurationMonths(booking)
+            : null;
+        }
+
+        function monthKeyFromDate(dateValue) {
+          const date = parseIso(dateValue);
+          if (!date) return null;
+          return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+        }
+
+        function monthKeysForBooking(booking) {
+          const start = booking.tanggalMulai || booking['Tanggal Mulai'] || booking.tanggalBooking || booking['Tanggal Booking'];
+          const end = booking.tanggalSelesai || booking['Akhir Penayangan'] || booking.tanggalAkhir || booking['Tanggal Akhir'];
+          const startDate = parseIso(start);
+          const endDate = parseIso(end) || startDate;
+          if (!startDate) return [];
+          const months = [];
+          const cursor = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
+          const final = new Date(endDate.getFullYear(), endDate.getMonth(), 1);
+          while (cursor <= final) {
+            months.push(`${cursor.getFullYear()}-${String(cursor.getMonth() + 1).padStart(2, '0')}`);
+            cursor.setMonth(cursor.getMonth() + 1);
+          }
+          return months;
+        }
+
+        function getBasePriceForBooking(booking, overrides = {}) {
+          const table = getPricingList();
+          const mediaBus = overrides.mediaBus ?? getBookingMediaBus(booking);
+          const space = overrides.space ?? getBookingSpace(booking);
+          const duration = overrides.duration ?? getBookingDurationMonths(booking);
+          const mediaRows = table.filter((entry) => normalizeLookupValue(entry.mediaBus) === normalizeLookupValue(mediaBus));
+          const bookingId = booking.id || booking.noPolisi || booking['No Polisi'] || 'N/A';
+          const fail = (reason) => ({ price: null, reason, bookingId, mediaBus, space, duration });
+          if (!mediaBus) return fail(`media bus tidak dapat ditentukan dari No Polisi ${getBookingNoPolisi(booking) || 'kosong'} atau tipe bus.`);
+          if (!space) return fail('jenis branding/space iklan kosong.');
+          if (!Number.isInteger(duration) || duration <= 0) return fail('tanggal mulai/akhir tidak menghasilkan durasi kontrak yang valid.');
+          if (!mediaRows.length) return fail(`media bus "${mediaBus}" tidak memiliki tier harga di konfigurasi.`);
+          const normalizedSpace = normalizeLookupValue(space);
+          const configuredSpace = (entry) => normalizeLookupValue(entry.spaceIklan);
+          let matchingRows = mediaRows.filter((entry) => configuredSpace(entry) === normalizedSpace);
+          if (!matchingRows.length && normalizedSpace === 'back body') {
+            matchingRows = mediaRows.filter((entry) => configuredSpace(entry) === 'full back body');
+          }
+          if (!matchingRows.length && normalizedSpace === 'side body') {
+            const leftRows = mediaRows.filter((entry) => configuredSpace(entry) === 'left body');
+            const rightRows = mediaRows.filter((entry) => configuredSpace(entry) === 'right body');
+            if (leftRows.length && rightRows.length) matchingRows = [...leftRows, ...rightRows];
+            else {
+              const missingSides = [
+                leftRows.length ? '' : 'Left Body',
+                rightRows.length ? '' : 'Right Body'
+              ].filter(Boolean);
+              return fail(`"Side Body" requires both "Left Body" and "Right Body" pricing tiers. Missing: ${missingSides.join(', ')}.`);
+            }
+          }
+
+          if (!matchingRows.length) {
+            const availableSpaces = [...new Set(mediaRows.map((entry) => String(entry.spaceIklan || '').trim()).filter(Boolean))];
+            return fail(`tier "${space}" tidak ditemukan untuk "${mediaBus}". Tier tersedia: ${availableSpaces.join(', ') || 'tidak ada'}.`);
+          }
+
+          const prices = matchingRows.map((entry) => {
+            const rawTierPrice = entry.durations?.[duration] ?? entry.durations?.[String(duration)];
+            const tierPrice = Number(rawTierPrice);
+            if (rawTierPrice !== undefined && rawTierPrice !== null && rawTierPrice !== '' && Number.isFinite(tierPrice) && tierPrice >= 0) {
+              return { price: tierPrice, source: 'tier' };
+            }
+
+            const rawMonthlyPrice = entry.durations?.[1] ?? entry.durations?.['1'];
+            const monthlyPrice = Number(rawMonthlyPrice);
+            return rawMonthlyPrice === undefined || rawMonthlyPrice === null || rawMonthlyPrice === '' || !Number.isFinite(monthlyPrice) || monthlyPrice < 0
+              ? null
+              : { price: monthlyPrice * duration, source: 'monthly-fallback' };
+          });
+          if (prices.some((price) => price === null)) {
+            const missingPriceTiers = matchingRows
+              .filter((entry, index) => prices[index] === null)
+              .map((entry) => entry.spaceIklan);
+            const configuredDurations = [...new Set(matchingRows.flatMap((entry) =>
+              Object.keys(entry.durations || {}).filter((key) => Number.isInteger(Number(key)) && Number(key) > 0)
+            ))].sort((a, b) => Number(a) - Number(b));
+            return fail(`harga untuk durasi ${duration} bulan tidak dikonfigurasi pada tier "${missingPriceTiers.join(', ')}", dan harga 1 bulan tidak tersedia sebagai fallback. Durasi tersedia: ${configuredDurations.join(', ') || 'tidak ada'}.`);
+          }
+          const usesMonthlyFallback = prices.some((entry) => entry.source === 'monthly-fallback');
+          return {
+            price: prices.reduce((sum, entry) => sum + entry.price, 0),
+            reason: '',
+            pricingNote: usesMonthlyFallback ? `Dihitung ${duration} × harga 1 bulan.` : '',
+            bookingId,
+            mediaBus,
+            space,
+            duration,
+          };
+        }
+
+        function calculateBookingFinancials(booking) {
+          const snapshot = booking?.pricingSnapshot;
+          if (snapshot && Number.isFinite(Number(snapshot.basePrice))) {
+            const basePrice = Number(snapshot.basePrice);
+            const ppn = Number(snapshot.ppn) || 0;
+            return {
+              bookingId: booking.id || booking.noPolisi || booking['No Polisi'] || 'N/A',
+              mediaBus: snapshot.mediaBus || getBookingMediaBus(booking),
+              space: snapshot.space || getBookingSpace(booking),
+              duration: Number(snapshot.duration) || getBookingDurationMonths(booking),
+              basePrice,
+              price: basePrice,
+              ppn,
+              totalWithPpn: Number(snapshot.totalWithPpn ?? (basePrice + ppn)),
+              monthlyRevenue: Number(snapshot.monthlyRevenue ?? (basePrice / Number(snapshot.duration || 1))),
+              pricingNote: snapshot.pricingNote || '',
+              pricingVersion: Number(snapshot.pricingVersion || 0),
+              reason: ''
+            };
+          }
+          const pricing = getBasePriceForBooking(booking);
+          const hasPricing = pricing.price !== null && Number.isFinite(pricing.price);
+          const ppn = hasPricing ? getPpnAmountForBase(pricing.price) : null;
+          return {
+            ...pricing,
+            basePrice: pricing.price,
+            ppn,
+            totalWithPpn: hasPricing ? pricing.price + ppn : null,
+            monthlyRevenue: hasPricing && pricing.duration > 0 ? pricing.price / pricing.duration : null,
+            pricingVersion: Number(window.__brandingPricingVersion || 0),
+          };
+        }
+
+        // Booking manual, edit, import, and revenue dashboard use this same resolver.
+        window.calculateBookingFinancials = calculateBookingFinancials;
+        window.getBrandingPricingCatalog = () => getPricingList().map((entry) => ({
+          mediaBus: String(entry.mediaBus || ''),
+          spaceIklan: String(entry.spaceIklan || ''),
+        }));
+        window.getBrandingPpnConfiguration = () => ({ ...getPpnConfig() });
+        window.getBrandingPriceTier = (mediaBus, space, duration) => getBasePriceForBooking({}, {
+          mediaBus: String(mediaBus || ''),
+          space: String(space || ''),
+          duration: Number(duration),
+        });
+        window.getBrandingPricingContext = (booking) => ({
+          mediaBus: getBookingMediaBus(booking),
+          space: getBookingSpace(booking),
+          duration: getBookingDurationMonths(booking),
+        });
+        window.createPricingSnapshot = (booking) => {
+          const result = calculateBookingFinancials(booking);
+          if (result.reason || !Number.isFinite(Number(result.basePrice))) return null;
+          return {
+            pricingVersion: Number(result.pricingVersion ?? window.__brandingPricingVersion ?? 0),
+            mediaBus: result.mediaBus,
+            space: result.space,
+            duration: result.duration,
+            basePrice: result.basePrice,
+            ppn: result.ppn,
+            totalWithPpn: result.totalWithPpn,
+            monthlyRevenue: result.monthlyRevenue,
+            pricingNote: result.pricingNote || '',
+          };
+        };
+
+        function getPpnAmountForBase(basePrice) {
+          const config = getPpnConfig();
+          return config.enabled ? (Number(basePrice) * Number(config.percent || 0)) / 100 : 0;
+        }
+
+        const reportedPricingIssues = new Set();
+
+        function buildRevenueRows(bookings) {
+          return bookings.map((booking) => {
+            const pricing = calculateBookingFinancials(booking);
+            const basePrice = pricing.basePrice;
+            const durationMonths = pricing.duration;
+            const hasPricing = basePrice !== null && Number.isFinite(basePrice);
+            const issueKey = `${pricing.bookingId}|${pricing.reason}`;
+            if (!hasPricing && !reportedPricingIssues.has(issueKey)) {
+              console.warn('[Pendapatan Branding] Harga tidak dapat dihitung:', {
+                bookingId: pricing.bookingId,
+                mediaBus: pricing.mediaBus || '(tidak diketahui)',
+                spaceIklan: pricing.space || '(kosong)',
+                durationMonths: pricing.duration ?? '(tidak diketahui)',
+                reason: pricing.reason
+              });
+              reportedPricingIssues.add(issueKey);
+            } else if (hasPricing) {
+              [...reportedPricingIssues].filter((key) => key.startsWith(`${pricing.bookingId}|`)).forEach((key) => reportedPricingIssues.delete(key));
+            }
+            return {
+              id: booking.id || booking.noPolisi || booking['No Polisi'] || 'N/A',
+              mediaBus: getBookingMediaBus(booking),
+              spaceIklan: getBookingSpace(booking),
+              startDate: booking.tanggalMulai || booking['Tanggal Mulai'] || '',
+              endDate: booking.tanggalSelesai || booking['Akhir Penayangan'] || booking.tanggalAkhir || booking['Tanggal Akhir'] || '',
+              durationMonths,
+              basePrice,
+              ppn: pricing.ppn,
+              totalWithPpn: pricing.totalWithPpn,
+              monthlyRevenue: pricing.monthlyRevenue,
+              pricingReason: pricing.reason,
+              pricingNote: pricing.pricingNote,
+              status: String(booking.status || booking.Status || '').toUpperCase()
+            };
+          });
+        }
+
+        function formatMonthLabel(monthKey) {
+          if (!monthKey) return '—';
+          const [year, month] = monthKey.split('-');
+          return new Date(Number(year), Number(month) - 1, 1).toLocaleString('id-ID', { month: 'long', year: 'numeric' });
+        }
+
+        function formatRevenueValue(value) {
+          return value === null || value === undefined ? '-' : formatRupiah(value);
+        }
+
+        function renderPricingTable() {
+          const tbody = document.getElementById('pricing-table-body');
+          if (!tbody) return;
+          const header = document.getElementById('pricing-table-header');
+          if (header) header.innerHTML = '<th>Media Bus</th><th>Space Iklan</th>' + DURATION_ORDER.map((duration) => `<th>${duration} Bulan</th>`).join('');
+          const rows = getPricingList();
+          tbody.innerHTML = rows.map((row, rowIndex) => `
+            <tr data-row-index="${rowIndex}">
+              <td>${row.mediaBus}</td>
+              <td>${row.spaceIklan}</td>
+              ${DURATION_ORDER.map((duration) => `
+                <td>
+                  <input
+                    type="number"
+                    min="0"
+                    step="1000"
+                    value="${row.durations[duration] ?? ''}"
+                    data-row-index="${rowIndex}"
+                    data-duration="${duration}"
+                  />
+                </td>
+              `).join('')}
+            </tr>
+          `).join('');
+          updatePpnPreview();
+        }
+
+        function updatePpnPreview() {
+          const previewBase = document.getElementById('ppn-base-preview');
+          const previewPpn = document.getElementById('ppn-amount-preview');
+          const previewTotal = document.getElementById('ppn-total-preview');
+          const ppnEnabled = document.getElementById('ppn-enabled');
+          const ppnPercent = document.getElementById('ppn-percent');
+          const valueDisplay = document.getElementById('ppn-display-value');
+          if (!previewBase || !previewPpn || !previewTotal || !ppnEnabled || !ppnPercent || !valueDisplay) return;
+          const pricingRows = getPricingList();
+          const firstValue = Number((pricingRows[0]?.durations?.[1]) || 0);
+          const config = { enabled: ppnEnabled.checked, percent: Number(ppnPercent.value || 0) };
+          const base = Number(firstValue || 0);
+          const ppn = config.enabled ? (base * config.percent) / 100 : 0;
+          const total = base + ppn;
+          valueDisplay.textContent = config.enabled ? `${config.percent}%` : 'Off';
+          previewBase.textContent = formatRupiah(base);
+          previewPpn.textContent = formatRupiah(ppn);
+          previewTotal.textContent = formatRupiah(total);
+          if (document.getElementById('revenue-table-body')) {
+            renderRevenueDashboard();
+          }
+        }
+
+        async function savePricingTable() {
+          const tbody = document.getElementById('pricing-table-body');
+          if (!tbody) return;
+          const nextRows = [...tbody.querySelectorAll('tr')].map((row) => {
+            const inputs = row.querySelectorAll('input');
+            const nextDurations = {};
+            inputs.forEach((input) => {
+              const duration = Number(input.dataset.duration || 0);
+              if (duration && input.value !== '') nextDurations[duration] = Number(input.value);
+            });
+            return {
+              mediaBus: row.children[0]?.textContent?.trim() || 'Trans Jogja - Medium',
+              spaceIklan: row.children[1]?.textContent?.trim() || 'Full Body',
+              durations: nextDurations
+            };
+          });
+          const ppn = {
+            enabled: document.getElementById('ppn-enabled')?.checked !== false,
+            percent: Number(document.getElementById('ppn-percent')?.value || 0)
+          };
+          const saveButton = document.getElementById('save-brand-pricing');
+          saveButton.disabled = true;
+          try {
+            if (typeof window.saveBrandingPricingConfiguration === 'function') {
+              await window.saveBrandingPricingConfiguration(nextRows, ppn);
+            } else {
+              setStoredValue(PRICE_STORAGE_KEY, nextRows);
+              savePpnConfig(ppn);
+              renderPricingTable();
+              renderRevenueDashboard();
+            }
+            if (window.showNotice) window.showNotice('Pricelist branding berhasil disimpan.', 'success');
+          } catch (error) {
+            console.error('Gagal menyimpan pricelist branding:', error);
+            if (window.showNotice) window.showNotice(error.message || 'Pricelist gagal disimpan.', 'error');
+          } finally {
+            saveButton.disabled = typeof window.can === 'function' && !window.can('pricelist.edit');
+          }
+        }
+
+        function getRevenueData() {
+          const dashboardData = window.__brandingDashboardData || { brandings: [] };
+          return Array.isArray(dashboardData.brandings) ? dashboardData.brandings : [];
+        }
+
+        function getRevenueBookingRows() {
+          const bookings = getRevenueData();
+          return buildRevenueRows(bookings.filter((booking) => {
+            const hasDate = booking.tanggalMulai || booking['Tanggal Mulai'];
+            return Boolean(hasDate);
+          }));
+        }
+
+        function getFilterOptions(listKey, labelBuilder) {
+          const values = new Set();
+          getRevenueBookingRows().forEach((booking) => {
+            const value = labelBuilder(booking);
+            if (value) values.add(value);
+          });
+          return [...values].sort();
+        }
+
+        function populateRevenueFilters() {
+          const periodSelect = document.getElementById('revenue-period');
+          const mediaSelect = document.getElementById('revenue-media-bus');
+          const spaceSelect = document.getElementById('revenue-space');
+          const durationSelect = document.getElementById('revenue-duration');
+          const statusSelect = document.getElementById('revenue-status');
+          if (!periodSelect || !mediaSelect || !spaceSelect || !durationSelect || !statusSelect) return;
+
+          const currentValues = {
+            period: periodSelect.value,
+            media: mediaSelect.value,
+            space: spaceSelect.value,
+            duration: durationSelect.value,
+            status: statusSelect.value
+          };
+
+          const rows = getRevenueBookingRows();
+          const uniqPeriods = new Set();
+          rows.forEach((row) => {
+            monthKeysForBooking({
+              tanggalMulai: row.startDate,
+              tanggalSelesai: row.endDate
+            }).forEach((monthKey) => uniqPeriods.add(monthKey));
+          });
+
+          const periodOptions = [...uniqPeriods].sort();
+          periodSelect.innerHTML = '<option value="">Semua Periode</option>' + periodOptions.map((monthKey) => `<option value="${monthKey}">${formatMonthLabel(monthKey)}</option>`).join('');
+          if (currentValues.period && [...periodSelect.options].some((option) => option.value === currentValues.period)) {
+            periodSelect.value = currentValues.period;
+          }
+
+          const mediaOptions = getFilterOptions('media', (row) => row.mediaBus);
+          mediaSelect.innerHTML = '<option value="">Semua Media</option>' + mediaOptions.map((value) => `<option value="${value}">${value}</option>`).join('');
+          if (currentValues.media && [...mediaSelect.options].some((option) => option.value === currentValues.media)) {
+            mediaSelect.value = currentValues.media;
+          }
+
+          const spaceOptions = getFilterOptions('space', (row) => row.spaceIklan);
+          spaceSelect.innerHTML = '<option value="">Semua Space</option>' + spaceOptions.map((value) => `<option value="${value}">${value}</option>`).join('');
+          if (currentValues.space && [...spaceSelect.options].some((option) => option.value === currentValues.space)) {
+            spaceSelect.value = currentValues.space;
+          }
+
+          const durationOptions = [...new Set(rows.map((row) => String(row.durationMonths ?? '—')))].sort((a, b) => Number(a) - Number(b));
+          durationSelect.innerHTML = '<option value="">Semua Durasi</option>' + durationOptions.map((value) => `<option value="${value}">${value === '—' ? value : `${value} bulan`}</option>`).join('');
+          if (currentValues.duration && [...durationSelect.options].some((option) => option.value === currentValues.duration)) {
+            durationSelect.value = currentValues.duration;
+          }
+
+          const statusOptions = [...new Set(rows.map((row) => row.status))].filter(Boolean).sort();
+          statusSelect.innerHTML = '<option value="">Semua Status</option>' + statusOptions.map((value) => `<option value="${value}">${value}</option>`).join('');
+          if (currentValues.status && [...statusSelect.options].some((option) => option.value === currentValues.status)) {
+            statusSelect.value = currentValues.status;
+          }
+        }
+
+        function getFilteredRevenueRows() {
+          const allRows = getRevenueBookingRows();
+          const periodSelect = document.getElementById('revenue-period');
+          const mediaSelect = document.getElementById('revenue-media-bus');
+          const spaceSelect = document.getElementById('revenue-space');
+          const durationSelect = document.getElementById('revenue-duration');
+          const statusSelect = document.getElementById('revenue-status');
+
+          if (!periodSelect || !mediaSelect || !spaceSelect || !durationSelect || !statusSelect) return allRows;
+
+          const selectedPeriod = periodSelect.value;
+          const selectedMedia = mediaSelect.value;
+          const selectedSpace = spaceSelect.value;
+          const selectedDuration = durationSelect.value;
+          const selectedStatus = statusSelect.value;
+
+          return allRows.filter((row) => {
+            const bookingMonths = monthKeysForBooking({ tanggalMulai: row.startDate, tanggalSelesai: row.endDate });
+            if (selectedPeriod && !bookingMonths.includes(selectedPeriod)) return false;
+            if (selectedMedia && row.mediaBus !== selectedMedia) return false;
+            if (selectedSpace && row.spaceIklan !== selectedSpace) return false;
+            if (selectedDuration && String(row.durationMonths ?? '—') !== String(selectedDuration)) return false;
+            if (selectedStatus && row.status !== selectedStatus) return false;
+            return true;
+          });
+        }
+
+        function renderRevenueDashboard() {
+          const tbody = document.getElementById('revenue-table-body');
+          const revenueEstimated = document.getElementById('revenue-estimated');
+          const revenueBase = document.getElementById('revenue-base');
+          const revenuePpn = document.getElementById('revenue-ppn');
+          const revenueTotal = document.getElementById('revenue-total');
+          if (!tbody || !revenueEstimated || !revenueBase || !revenuePpn || !revenueTotal) return;
+
+          populateRevenueFilters();
+          const filteredRows = getFilteredRevenueRows();
+
+          if (!filteredRows.length) {
+            tbody.innerHTML = '<tr><td colspan="11" class="empty-state">Tidak ada data booking yang cocok dengan filter.</td></tr>';
+            revenueEstimated.textContent = 'Rp0';
+            revenueBase.textContent = 'Rp0';
+            revenuePpn.textContent = 'Rp0';
+            revenueTotal.textContent = 'Rp0';
+            renderRevenueChart([]);
+            return;
+          }
+
+          const baseRevenue = filteredRows.reduce((sum, row) => sum + Number(row.basePrice || 0), 0);
+          const ppnRevenue = filteredRows.reduce((sum, row) => sum + Number(row.ppn || 0), 0);
+          const estimatedRevenue = filteredRows.reduce((sum, row) =>
+            sum + (row.monthlyRevenue !== null && row.durationMonths > 0 ? row.monthlyRevenue * row.durationMonths : 0), 0);
+          const totalRevenue = baseRevenue + ppnRevenue;
+
+          revenueEstimated.textContent = formatRupiah(estimatedRevenue);
+          revenueBase.textContent = formatRupiah(baseRevenue);
+          revenuePpn.textContent = formatRupiah(ppnRevenue);
+          revenueTotal.textContent = formatRupiah(totalRevenue);
+
+          tbody.innerHTML = filteredRows.map((row) => `
+            <tr>
+              <td>${row.id}</td>
+              <td>${row.mediaBus}</td>
+              <td>${row.spaceIklan}</td>
+              <td>${row.startDate || '—'}</td>
+              <td>${row.endDate || '—'}</td>
+              <td>${row.durationMonths === null ? '—' : `${row.durationMonths} bulan`}</td>
+              <td>${formatRevenueValue(row.basePrice)}</td>
+              <td>${formatRevenueValue(row.ppn)}</td>
+              <td>${formatRevenueValue(row.totalWithPpn)}</td>
+              <td>${formatRevenueValue(row.monthlyRevenue)}</td>
+              <td>${row.pricingReason || row.pricingNote || 'Harga terkonfigurasi'}</td>
+            </tr>
+          `).join('');
+
+          const monthTotals = new Map();
+          filteredRows.forEach((row) => {
+            const months = monthKeysForBooking({ tanggalMulai: row.startDate, tanggalSelesai: row.endDate });
+            months.forEach((monthKey) => {
+              const current = monthTotals.get(monthKey) || 0;
+              if (row.monthlyRevenue !== null) monthTotals.set(monthKey, current + row.monthlyRevenue);
+            });
+          });
+          renderRevenueChart([...monthTotals.entries()].map(([key, value]) => ({ key, value })));
+        }
+
+        function renderRevenueChart(monthEntries) {
+          const canvas = document.getElementById('revenue-month-chart');
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) return;
+
+          if (window.__revenueChartInstance) {
+            window.__revenueChartInstance.destroy();
+          }
+
+          const labels = monthEntries.map((entry) => formatMonthLabel(entry.key));
+          const data = monthEntries.map((entry) => Number(entry.value || 0));
+
+          window.__revenueChartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels,
+              datasets: [{
+                label: 'Pendapatan Branding',
+                data,
+                backgroundColor: '#0E4A31',
+                borderRadius: 6,
+                borderSkipped: false
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false }
+              },
+              scales: {
+                y: revenueChartYScale(data)
+              }
+            }
+          });
+        }
+
+        function initialisePricingAndRevenue() {
+          const pricingButton = document.getElementById('save-brand-pricing');
+          if (pricingButton) pricingButton.addEventListener('click', savePricingTable);
+          const initialPpn = getPpnConfig();
+          const initialPpnEnabled = document.getElementById('ppn-enabled');
+          const initialPpnPercent = document.getElementById('ppn-percent');
+          if (initialPpnEnabled) initialPpnEnabled.checked = initialPpn.enabled;
+          if (initialPpnPercent) initialPpnPercent.value = String(initialPpn.percent);
+
+          const ppnEnabled = document.getElementById('ppn-enabled');
+          const ppnPercent = document.getElementById('ppn-percent');
+          if (ppnEnabled) ppnEnabled.addEventListener('change', updatePpnPreview);
+          if (ppnPercent) ppnPercent.addEventListener('input', updatePpnPreview);
+
+          const revenueFilterIds = ['revenue-period', 'revenue-media-bus', 'revenue-space', 'revenue-duration', 'revenue-status'];
+          revenueFilterIds.forEach((id) => {
+            const node = document.getElementById(id);
+            if (node) node.addEventListener('change', renderRevenueDashboard);
+          });
+
+          window.calculateDashboardRevenue = (bookings, year = new Date().getFullYear()) => {
+            const rows = buildRevenueRows(bookings);
+            const monthTotals = Array.from({ length: 12 }, () => 0);
+            rows.forEach((row) => {
+              if (row.monthlyRevenue === null) return;
+              monthKeysForBooking({ tanggalMulai: row.startDate, tanggalSelesai: row.endDate }).forEach((monthKey) => {
+                const [monthYear, month] = monthKey.split('-').map(Number);
+                if (monthYear === year) monthTotals[month - 1] += row.monthlyRevenue;
+              });
+            });
+            return {
+              total: monthTotals.reduce((sum, amount) => sum + amount, 0),
+              months: monthTotals
+            };
+          };
+
+          renderPricingTable();
+          renderRevenueDashboard();
+
+          window.addEventListener('branding-dashboard-data-ready', () => {
+            renderRevenueDashboard();
+          });
+
+          if (window.__brandingDashboardData) {
+            renderRevenueDashboard();
+          }
+        }
+
+        window.addEventListener('DOMContentLoaded', initialisePricingAndRevenue);
+      })();
+    </script>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

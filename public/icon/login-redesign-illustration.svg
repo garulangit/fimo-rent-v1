@@ -1,0 +1,37 @@
+<svg viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-labelledby="title">
+  <title id="title">Ilustrasi karakter untuk halaman masuk</title>
+  <style>
+    .par { transform-box: fill-box; transform-origin: 50% 100%; will-change: transform; }
+    .pupil { will-change: transform; transition: opacity .2s ease .16s; }
+    .xmark { opacity: 0; transition: opacity .12s ease; }
+    .sclera { transition: opacity .2s ease .08s; }
+    .is-pw .xmark { opacity: 1; transition: opacity .2s ease .18s; }
+    .is-pw .sclera, .is-pw .pupil { opacity: 0; transition: opacity .15s ease .18s; }
+    .idle { transform-box: fill-box; transform-origin: 50% 100%; }
+    .i1 { animation: float 7s ease-in-out infinite; }
+    .i2 { animation: breathe 5.4s ease-in-out infinite; }
+    .i3 { animation: float 6.2s ease-in-out -2s infinite; }
+    .i4 { animation: sway 8.5s ease-in-out -1s infinite; }
+    @keyframes float { 50% { transform: translateY(-4px) rotate(.6deg); } }
+    @keyframes breathe { 50% { transform: scale(1.012,1.018); } }
+    @keyframes sway { 50% { transform: translateY(-3px) rotate(-1deg); } }
+    @media (prefers-reduced-motion: reduce) { .idle { animation: none; } .xmark, .sclera, .pupil { transition: none; } }
+  </style>
+  <!-- Geometry copied unchanged from the uploaded login-redesign.html asset. -->
+  <g class="par" data-d="4" data-gain="1.15" data-f="0.14"><g class="idle i1">
+    <ellipse cx="175" cy="345" rx="140" ry="145" fill="#8DB09A"/>
+    <g class="face"><g class="eye" data-rx="13" data-ry="16" data-r="6.5" transform="translate(140 318)"><ellipse class="sclera" rx="13" ry="16" fill="#fff" stroke="rgba(35,39,42,.3)" stroke-width="1.5"/><circle class="pupil" r="6.5" fill="#23272A"/><path class="xmark" d="M-6.7 -6.7L6.7 6.7M6.7 -6.7L-6.7 6.7" fill="none" stroke="#23272A" stroke-width="3.2" stroke-linecap="round"/></g><g class="eye" data-rx="13" data-ry="16" data-r="6.5" transform="translate(208 318)"><ellipse class="sclera" rx="13" ry="16" fill="#fff" stroke="rgba(35,39,42,.3)" stroke-width="1.5"/><circle class="pupil" r="6.5" fill="#23272A"/><path class="xmark" d="M-6.7 -6.7L6.7 6.7M6.7 -6.7L-6.7 6.7" fill="none" stroke="#23272A" stroke-width="3.2" stroke-linecap="round"/></g></g>
+  </g></g>
+  <g class="par" data-d="8" data-gain="1" data-f="0.07"><g class="idle i2">
+    <path d="M255 250C255 160 300 105 355 105C415 105 447 165 441 250L437 380C435 430 400 458 350 458C295 458 252 432 255 370Z" fill="#0E5A3C"/>
+    <g class="face"><g class="eye" data-rx="14" data-ry="17" data-r="7" transform="translate(318 228)"><ellipse class="sclera" rx="14" ry="17" fill="#fff" stroke="rgba(35,39,42,.3)" stroke-width="1.5"/><circle class="pupil" r="7" fill="#23272A"/><path class="xmark" d="M-7.1 -7.1L7.1 7.1M7.1 -7.1L-7.1 7.1" fill="none" stroke="#F5F3EE" stroke-width="3.2" stroke-linecap="round"/></g><g class="eye" data-rx="14" data-ry="17" data-r="7" transform="translate(386 228)"><ellipse class="sclera" rx="14" ry="17" fill="#fff" stroke="rgba(35,39,42,.3)" stroke-width="1.5"/><circle class="pupil" r="7" fill="#23272A"/><path class="xmark" d="M-7.1 -7.1L7.1 7.1M7.1 -7.1L-7.1 7.1" fill="none" stroke="#F5F3EE" stroke-width="3.2" stroke-linecap="round"/></g></g>
+  </g></g>
+  <g class="par" data-d="12" data-gain="0.5" data-f="0.08"><g class="idle i3">
+    <rect x="318" y="402" width="220" height="104" rx="52" fill="#F2B632"/>
+    <g class="face"><g class="eye" data-rx="11.5" data-ry="14.5" data-r="6" transform="translate(400 446)"><ellipse class="sclera" rx="11.5" ry="14.5" fill="#fff" stroke="rgba(35,39,42,.3)" stroke-width="1.5"/><circle class="pupil" r="6" fill="#23272A"/><path class="xmark" d="M-6.1 -6.1L6.1 6.1M6.1 -6.1L-6.1 6.1" fill="none" stroke="#23272A" stroke-width="3.2" stroke-linecap="round"/></g><g class="eye" data-rx="11.5" data-ry="14.5" data-r="6" transform="translate(458 446)"><ellipse class="sclera" rx="11.5" ry="14.5" fill="#fff" stroke="rgba(35,39,42,.3)" stroke-width="1.5"/><circle class="pupil" r="6" fill="#23272A"/><path class="xmark" d="M-6.1 -6.1L6.1 6.1M6.1 -6.1L-6.1 6.1" fill="none" stroke="#23272A" stroke-width="3.2" stroke-linecap="round"/></g></g>
+  </g></g>
+  <g class="par" data-d="10" data-gain="0.6" data-f="0.04"><g class="idle i4">
+    <circle cx="120" cy="165" r="50" fill="#23272A"/>
+    <g class="face"><g class="eye" data-rx="10" data-ry="12.5" data-r="5" transform="translate(104 160)"><ellipse class="sclera" rx="10" ry="12.5" fill="#fff" stroke="rgba(35,39,42,.3)" stroke-width="1.5"/><circle class="pupil" r="5" fill="#23272A"/><path class="xmark" d="M-5.2 -5.2L5.2 5.2M5.2 -5.2L-5.2 5.2" fill="none" stroke="#F5F3EE" stroke-width="3.2" stroke-linecap="round"/></g><g class="eye" data-rx="10" data-ry="12.5" data-r="5" transform="translate(138 160)"><ellipse class="sclera" rx="10" ry="12.5" fill="#fff" stroke="rgba(35,39,42,.3)" stroke-width="1.5"/><circle class="pupil" r="5" fill="#23272A"/><path class="xmark" d="M-5.2 -5.2L5.2 5.2M5.2 -5.2L-5.2 5.2" fill="none" stroke="#F5F3EE" stroke-width="3.2" stroke-linecap="round"/></g></g>
+  </g></g>
+</svg>
