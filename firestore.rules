@@ -1,0 +1,157 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function rolePath() {
+      return /databases/$(database)/documents/userRoles/$(request.auth.uid);
+    }
+
+    function hasRoleDocument() {
+      return isSignedIn() && exists(rolePath());
+    }
+
+    function currentRole() {
+      return hasRoleDocument() ? get(rolePath()).data.get('role', '') : '';
+    }
+
+    function isAccountActive() {
+      return hasRoleDocument() && get(rolePath()).data.get('active', true) == true;
+    }
+
+    function hasRole(role) {
+      return isAccountActive() && currentRole() == role;
+    }
+
+    function hasPermission(permission) {
+      return isAccountActive()
+        && get(rolePath()).data.get('permissions', []) is list
+        && permission in get(rolePath()).data.get('permissions', []);
+    }
+
+    function isSuperAdmin() {
+      return hasRole('superadmin');
+    }
+
+    function isAdmin() {
+      return isSuperAdmin() || hasRole('admin');
+    }
+
+    function isOperator() {
+      return hasRole('operator');
+    }
+
+    function isViewer() {
+      return hasRole('viewer');
+    }
+
+    function isStaff() {
+      return isAdmin() || isOperator() || isViewer();
+    }
+
+    function canManageUsers() {
+      return isSuperAdmin() || hasPermission('users.manage');
+    }
+
+    function canWriteAdministrasi() {
+      return isAdmin() || isOperator();
+    }
+
+    function canEditAppConfig(configId) {
+      return isAdmin()
+        || (configId == 'masterData' && hasPermission('masterData.edit'))
+        || (configId == 'brandingPricing' && hasPermission('pricelist.edit'));
+    }
+
+    function validManagedRole() {
+      return request.resource.data.role in ['superadmin', 'admin', 'operator', 'viewer']
+        && (!('active' in request.resource.data) || request.resource.data.active is bool);
+    }
+
+    function validNotaDinasCreate() {
+      return request.resource.data.keys().hasAll(['createdBy', 'createdAt', 'updatedBy', 'updatedAt'])
+        && request.auth.token.email != null
+        && request.resource.data.createdBy == request.auth.token.email
+        && request.resource.data.updatedBy == request.auth.token.email
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+    }
+
+    function validNotaDinasUpdate() {
+      return request.resource.data.keys().hasAll(['createdBy', 'createdAt', 'updatedBy', 'updatedAt'])
+        && request.auth.token.email != null
+        && request.resource.data.createdBy == resource.data.createdBy
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.updatedBy == request.auth.token.email
+        && request.resource.data.updatedAt == request.time
+        && resource.data.status != 'FINAL';
+    }
+
+    // Users may read their own role; account managers can list roles.
+    match /userRoles/{uid} {
+      allow read: if isSignedIn() && (request.auth.uid == uid || isAdmin() || hasPermission('users.view'));
+      allow create: if canManageUsers()
+        && validManagedRole()
+        && (request.resource.data.role != 'superadmin' || isSuperAdmin());
+      allow update: if canManageUsers()
+        && validManagedRole()
+        && (request.auth.uid != uid
+          || (request.resource.data.role == resource.data.role
+            && request.resource.data.get('active', true) == true))
+        && ((resource.data.role != 'superadmin' && request.resource.data.role != 'superadmin') || isSuperAdmin());
+    }
+
+    match /userPresence/{uid} {
+      allow read: if isSignedIn() && (isAdmin() || hasPermission('users.view'));
+      allow create, update: if isSignedIn()
+        && request.auth.uid == uid
+        && isAccountActive()
+        && currentRole() in ['superadmin', 'admin', 'operator', 'viewer']
+        && request.resource.data.keys().hasAll(['lastSeen'])
+        && request.resource.data.keys().hasOnly(['lastSeen'])
+        && request.resource.data.lastSeen == request.time;
+    }
+
+    // Operational reads remain available to active roles. Mutations are limited
+    // to roles that have operational write access.
+    match /buses/{busId} {
+      allow read: if isStaff();
+      allow create, update, delete: if isAdmin() || isOperator();
+    }
+
+    match /brandings/{brandingId} {
+      allow read: if isStaff();
+      allow create, update, delete: if isAdmin() || isOperator();
+    }
+
+    match /appConfig/{configId} {
+      allow read: if isStaff();
+      allow create, update: if canEditAppConfig(configId);
+    }
+
+    // Kelengkapan Administrasi Branding
+    match /brandAdmins/{brandId} {
+      allow read: if isStaff();
+      allow create, update, delete: if canWriteAdministrasi();
+
+      match /fotoBranding/{noPolisi} {
+        allow read: if isStaff();
+        allow create, update, delete: if canWriteAdministrasi();
+      }
+    }
+
+    // Nota Dinas is stored independently from its source booking/branding.
+    match /notaDinas/{notaDinasId} {
+      allow read: if isStaff();
+      allow create: if canWriteAdministrasi() && validNotaDinasCreate();
+      allow update: if canWriteAdministrasi() && validNotaDinasUpdate();
+      allow delete: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "branding-trans-jogja",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Dashboard internal inventory branding Trans Jogja.",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/revenue-calculation.test.cjs && node tests/trayek-master.test.cjs && node tests/permissions.test.cjs && node tests/dashboard-monitoring.test.cjs && node tests/surat-penawaran.test.cjs && node tests/surat-konfirmasi.test.cjs && node tests/account-access.test.cjs && node --test tests/presence.test.cjs functions/test/account-policy.test.cjs",
+    "emulators": "firebase emulators:start --only auth,firestore --project demo-branding-transjogja",
+    "emulators:seed": "node scripts/firebase-emulator.mjs seed",
+    "emulators:test": "firebase emulators:exec --only auth,firestore --project demo-branding-transjogja \"node scripts/firebase-emulator.mjs test\""
+  },
+  "devDependencies": {
+    "firebase-tools": "^15.33.0"
+  },
+  "dependencies": {
+    "firebase": "^12.19.0"
+  }
+}

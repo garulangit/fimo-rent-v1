@@ -1,0 +1,69 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function rolePath() {
+      return /databases/(default)/documents/userRoles/$(request.auth.uid);
+    }
+
+    function hasRole(role) {
+      return isSignedIn()
+        && firestore.exists(rolePath())
+        && firestore.get(rolePath()).data.role == role;
+    }
+
+    function isAdmin() {
+      return hasRole('admin');
+    }
+
+    function isOperator() {
+      return hasRole('operator');
+    }
+
+    function isViewer() {
+      return hasRole('viewer');
+    }
+
+    function isStaff() {
+      return isAdmin() || isOperator() || isViewer();
+    }
+
+    function canWriteAdministrasi() {
+      return isAdmin() || isOperator();
+    }
+
+    function isCreateOrUpdate() {
+      return request.resource != null;
+    }
+
+    function isDocSizeAllowed(docKey) {
+      return (docKey == 'pks' && request.resource.size <= 2 * 1024 * 1024)
+        || (docKey != 'pks' && request.resource.size <= 500 * 1024);
+    }
+
+    // PDF administrasi: brands/{brandId}/administrasi/{docKey-folder}/{filename}
+    match /brands/{brandId}/administrasi/{docKey}/{filename} {
+      allow read: if isStaff();
+      allow delete: if canWriteAdministrasi();
+      allow create, update: if canWriteAdministrasi()
+        && isDocSizeAllowed(docKey)
+        && request.resource.contentType == 'application/pdf';
+    }
+
+    // Foto branding (same feature; used by admin-features.js)
+    match /brands/{brandId}/foto-branding/{noPolisi}/{filename} {
+      allow read: if isStaff();
+      allow delete: if canWriteAdministrasi();
+      allow create, update: if canWriteAdministrasi()
+        && request.resource.size <= 500 * 1024
+        && request.resource.contentType.matches('image/(jpeg|png|jpg)');
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
